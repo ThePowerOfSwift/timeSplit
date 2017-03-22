@@ -52,16 +52,29 @@ class AddEffectVC: UIViewController {
         })
     }
     
-    @IBAction func loadImageBtn(_ sender: AnyObject) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
-            imagePicker.allowsEditing = false
-            self.present(imagePicker, animated: true, completion: nil)
-            imagePicked = sender.tag
-        }
+    @IBAction func selectPicture(_ sender: AnyObject) {
+        let ImagePicker = UIImagePickerController()
+        ImagePicker.delegate = self
+        ImagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        self.present(ImagePicker, animated: true, completion: nil)
     }
+    
+    
+    @IBAction func upload_request(_ sender: AnyObject) {
+        
+    }
+    
+    // Original
+//    @IBAction func loadImageBtn(_ sender: AnyObject) {
+//        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+//            let imagePicker = UIImagePickerController()
+//            imagePicker.delegate = self
+//            imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+//            imagePicker.allowsEditing = false
+//            self.present(imagePicker, animated: true, completion: nil)
+//            imagePicked = sender.tag
+//        }
+//    }
 
     
     @IBAction func cancelButtonTapped(sender: UIButton) {
@@ -94,8 +107,8 @@ class AddEffectVC: UIViewController {
 
 extension AddEffectVC:  UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
 //        if imagePicked == 1 {
 //            imagePicked01.image = image
 //            imagePicked01.contentMode = .scaleToFill
@@ -109,8 +122,6 @@ extension AddEffectVC:  UINavigationControllerDelegate, UIImagePickerControllerD
 //            imagePicked02.layer.borderColor = UI.Color.white.cgcolor
 //            imagePicked02.clipsToBounds = true
 //        }
-//        dismiss(animated: true, completion: nil)
-//    }
-    
-    
+        dismiss(animated: true, completion: nil)
+    }
 }
