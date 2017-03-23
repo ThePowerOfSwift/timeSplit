@@ -33,13 +33,26 @@ passport.deserializeUser(Account.deserializeUser());
 // api routes v1
 app.use('/v1', routes);
 
+// URL : http://localhost:3005/v1/images
 // To get all the images/files stored in MongoDB
-app.get('/images', (req, res) => {
+app.get('/images', function(req, res) {
   routes.getImages(function(err, genres) {
     if (err) {
       res.send(err);
     }
     res.json(genres);
+  });
+});
+
+// URL : http://localhost:3005/images/(give you a collection ID)
+// To get the single image/file using id from the MongoDB
+app.get('/images/:id', function(req, res) {
+  //calling the function from index.js class using the routes object
+  routes.getImageById(req.params.id, function(err, genres) {
+    if (err) {
+      res.send(err);
+    }
+    res.send(genres.path);
   });
 });
 

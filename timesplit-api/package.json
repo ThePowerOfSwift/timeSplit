@@ -39,7 +39,8 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.0.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "ejs": "1.0.0"
   },
   "devDependencies": {
     "@types/del": "^2.2.32",

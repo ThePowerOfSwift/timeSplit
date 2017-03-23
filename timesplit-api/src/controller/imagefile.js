@@ -1,43 +1,35 @@
 import mongoose from 'mongoose';
 import { Router } from 'express';
 import multer from 'multer';
-import fs from 'fs';
+import Image from '../model/image';
+import bodyParser from 'body-parser';
+import passport from 'passport';
 import path from 'path';
+import fs from 'fs';
 
+import { authenticate } from '../middleware/authMiddleware';
 
-// path and originalname are the fields stored in MongoDB
-var imageSchema = mongoose.Schema({
-  path: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  originalname: {
-    type: String,
-    required: true
-  }
-});
+export default({ config, db }) => {
+  let api = Router();
 
-var Image = module.exports = mongoose.model('files', imageSchema);
-  let app = Router();
-
-  app.getImages = function(callback, limit) {
+  api.getImages = function(callback, limit) {
     Image.find(callback).limit(limit);
   }
 
-  app.getImageById = function(id, callback) {
-    Image.findById(id. callback);
+  api.getImageById = function(image, callback) {
+    Image.findById(id, callback);
   }
 
-  app.addImage = function(image, callback) {
+  api.addImage = function(image, callback) {
     Image.create(image, callback);
   }
 
+  // setup multer storage and parameters
   var storage = multer.diskStorage({
-    destination: function(req, file, cb) {
+    destination: function(req,file,cb) {
       cb(null, 'uploads/')
     },
-    filename: function(req, file, cb) {
+    filename: function(req,file,cb) {
       cb(null, file.originalname);
     }
   });
@@ -48,27 +40,29 @@ var Image = module.exports = mongoose.model('files', imageSchema);
     limits: { fileSize: maxSize }
   });
 
-  app.get('/', function(req, res, next) {
-    res.sender(index.ejs);
+  api.get('/', function(req, res, next) {
+    res.render('index.ejs');
   });
 
-  app.post('/', upload.any(), function(req, res, next) {
+  api.post('/', upload.any(), function(req, res, next) {
     res.send(req.files);
-    // req.files has the information regarding the file you are uploading
-    // from the total information, I am just using the path and the image
-    // name to store in the mongo collection(table)
+    // req.files has the information regarding the file you are uploading...
+    // from the total information, i am just using the path and the imageName to store in the mongo collection(table)
     var path = req.files[0].path;
-    var imageName = req.files[0].orginialname;
-
+    var imageName = req.files[0].originalname;
     var imagepath = {};
     imagepath['path'] = path;
     imagepath['originalname'] = imageName;
-    // imagepath contains two object, path and the imageName
+    //imagepath contains two objects, path and the imageName
 
-    // we are passing two objects in the addImage method.. which is defined
-    // above..
-    app.addImage(imagepath, function(err) {
+    //we are passing two objects in the addImage method.. which is defined above..
+    api.addImage(imagepath, function(err) {
+      if (err) {
+        res.send(err);
+      }
+      res.json(error);
     });
   });
 
-  module.exports = app;
+  return api;
+}
