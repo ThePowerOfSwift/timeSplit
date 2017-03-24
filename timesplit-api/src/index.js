@@ -6,8 +6,9 @@ import passport from 'passport';
 import path from 'path';
 import config from './config';
 import routes from './routes';
-import fs from 'fs';
 const LocalStrategy = require('passport-local').Strategy;
+var fs = require('fs');
+var multer = require('multer');
 
 let app = express();
 app.server = http.createServer(app);
@@ -31,7 +32,6 @@ passport.use(new LocalStrategy({
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
-
 // api routes v1
 app.use('/v1', routes);
 app.set('views', path.join(__dirname, 'views'));
@@ -40,31 +40,41 @@ app.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
 });
 
-var multer = require('multer');
-// var fs = require('fs');
-
-app.post('/', multer({ dest: 'uploads/'}).single('upl'),(req, res) => {
-
-  let fileExtension = path.extname(req.file.originalname);
-  const appRoot = process.env.PWD + '/images';
-  var file = appRoot + '/' + req.file.filename + fileExtension;
-
-  console.log(req.body);
-  console.log(req.file);
-  res.sendStatus(204).end();
-  fs.rename(req.file.path, file, (err) => {
-    if (err) {
-      res.sendStatus(500);
-    } else {
-      res.json({
-        message: 'File uploaded successfully',
-        filename: req.file.filename + fileExtension,
-          url: `${process.env.PWD}/images/${req.file.filename + fileExtension}`
-      });
-    }
-  });
+// TEST VERSION
+var storage = multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './uploads');
+  },
+  filename: function(req, file, callback) {
+    var originalname = file.originalname;
+    var extension = originalname.split(".");
+    var filename = Date.now() + '.' + extension[extension.length-1];
+    callback(null, filename);
+  }
 });
+var upload = multer({
+  storage : storage }).single('upl');
 
+app.post('/', function(req, res) {
+  upload(req, res, function(err) {
+      // let fileExtension = path.extname(req.file.fieldname);
+      // let mimetype = req.file.mimetype;
+      // const appRoot = process.env.PWD + '/images';
+      // var file = appRoot + '/' + req.file.filename + fileExtension;
+      // fs.rename(req.file.path, file, (err) => {
+    if (err) {
+      return res.end("Error uploading file.");
+    }
+    res.json({
+        message: 'File uploaded successfully',
+        filename: req.file.filename, // + fileExtension,
+        url: `${process.env.PWD}/images/${req.file.filename}` //+ fileExtension
+      });
+      console.log(req.body);
+      console.log(req.file);
+      res.end("File is uploaded");
+    });
+});
 
 app.server.listen(config.port);
 console.log(`Start on port ${app.server.address().port}`);

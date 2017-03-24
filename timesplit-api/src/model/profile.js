@@ -6,14 +6,14 @@ import TheoryComment from './theoryComment';
 let Schema = mongoose.Schema;
 
 let ProfileSchema = new Schema({
-  name: {
+  username: {
     type: String,
     required: true
   },
   bio: {
     type: String
   },
-  profileImage: {
+  profileImageURL: {
     type: String
   },
   likes: [{ type: Schema.Types.ObjectId, ref: 'Likes'}],
@@ -23,3 +23,7 @@ let ProfileSchema = new Schema({
 });
 
 module.exports = mongoose.model('Profile', ProfileSchema);
+
+module.exports.createUser = function (newUser, callback) {
+  newUser.save(callback);
+}
