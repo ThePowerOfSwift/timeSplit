@@ -24,6 +24,10 @@ class InfoVC: UIViewController {
     @IBAction func theoryButtonTapped(sender: UIButton) {
         performSegue(withIdentifier: "ShowTheoryVC", sender: self)
     }
+    
+    @IBAction func profileButtonTapped(sender: UIButton) {
+        performSegue(withIdentifier: "ShowProfileVC", sender: self)
+    }
 
 
 }

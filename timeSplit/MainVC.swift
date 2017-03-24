@@ -45,6 +45,10 @@ class MainVC: UIViewController {
         performSegue(withIdentifier: "ShowTheoryVC", sender: self)
     }
     
+    @IBAction func profileButtonTapped(sender: UIButton) {
+        performSegue(withIdentifier: "ShowProfileVC", sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowDetailVC" {
             if let indexPath = tableView.indexPathForSelectedRow {

@@ -50,6 +50,10 @@ class TheoryVC: UIViewController {
         performSegue(withIdentifier: "ShowEffectVC", sender: self)
     }
     
+    @IBAction func profileButtonTapped(sender: UIButton) {
+        performSegue(withIdentifier: "ShowProfileVC", sender: self)
+    }
+    
     @IBAction func backButtonTapped(sender: UIButton) {
         _ = navigationController?.popViewController(animated: true)
     }

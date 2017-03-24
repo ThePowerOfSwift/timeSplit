@@ -48,12 +48,16 @@ let POST_ADD_NEW_THEORY = "\(BASE_API_URL)/theory/add"
 // POST add new theory comment for a specific theory
 let POST_ADD_NEW_THEORY_COMMENT = "\(BASE_API_URL)/theory/comments/add"
 
+
+// PHOTOS
 // POST add photos 
 let POST_PHOTO_EFFECTS = "\(BASE_API_URL)/uploads/effects"
 
 // POST add profile photo 
 let POST_PROFILE_PHOTO = "\(BASE_API_URL)/uploads/profiles"
 
+
+// PROFILES
 // POST add profile
 let POST_PROFILE = "\(BASE_API_URL)/profile/add"
 

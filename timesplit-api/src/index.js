@@ -2,10 +2,11 @@ import http from 'http';
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
+import passport from 'passport';
 import path from 'path';
 import config from './config';
 import routes from './routes';
-import passport from 'passport';
+import fs from 'fs';
 const LocalStrategy = require('passport-local').Strategy;
 
 let app = express();
@@ -30,31 +31,60 @@ passport.use(new LocalStrategy({
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
+
 // api routes v1
 app.use('/v1', routes);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+app.get('/', function(req, res) {
+  res.render('index', { title: 'Express' });
+});
 
-// URL : http://localhost:3005/v1/images
-// To get all the images/files stored in MongoDB
-app.get('/images', function(req, res) {
-  routes.getImages(function(err, genres) {
+var multer = require('multer');
+// var fs = require('fs');
+
+// app.post('/', multer({ dest: 'uploads/'}).single('upl'), function(req, res) {
+//
+//   let fileExtension = path.extname(req.file.originalname);
+//   var file = req.file.filename + fileExtension;
+//
+//   console.log(req.body);
+//   console.log(req.file);
+//   res.status(204).end();
+//   fs.rename(req.path, file, (err) => {
+//     if (err) {
+//       res.send(500);
+//     } else {
+//       res.json({
+//         message: 'File uploaded successfully',
+//         filename: req.file.filename + fileExtension
+//       });
+//     }
+//   });
+// });
+
+app.post('/', multer({ dest: 'uploads/'}).single('upl'),(req, res) => {
+
+  let fileExtension = path.extname(req.file.originalname);
+  const appRoot = process.env.PWD + '/images';
+  var file = appRoot + '/' + req.file.filename + fileExtension;
+
+  console.log(req.body);
+  console.log(req.file);
+  res.status(204).end();
+  fs.rename(req.file.path, file, (err) => {
     if (err) {
-      res.send(err);
+      res.sendStatus(500);
+    } else {
+      res.json({
+        message: 'File uploaded successfully',
+        filename: req.file.filename + fileExtension,
+          url: `${process.env.PWD}/images/${req.file.filename + fileExtension}`
+      });
     }
-    res.json(genres);
   });
 });
 
-// URL : http://localhost:3005/images/(give you a collection ID)
-// To get the single image/file using id from the MongoDB
-app.get('/images/:id', function(req, res) {
-  //calling the function from index.js class using the routes object
-  routes.getImageById(req.params.id, function(err, genres) {
-    if (err) {
-      res.send(err);
-    }
-    res.send(genres.path);
-  });
-});
 
 app.server.listen(config.port);
 console.log(`Start on port ${app.server.address().port}`);

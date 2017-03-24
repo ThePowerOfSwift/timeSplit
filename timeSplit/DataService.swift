@@ -565,7 +565,6 @@ class DataService {
             body.append("--\(boundary)--\r\n".data(using: String.Encoding.utf8)!)
             request.httpBody = body as Data
             
-            let session = URLSession.shared
             let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
                 guard ((data) != nil), let _:URLResponse = response, error == nil else {
                     print("error")

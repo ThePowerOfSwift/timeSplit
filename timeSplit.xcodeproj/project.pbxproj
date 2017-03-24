@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		967325CB55378BE2E8D152D3 /* Pods_timeSplit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 167733128633D466E5245F83 /* Pods_timeSplit.framework */; };
+		C4239AC31E838564002B33C4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4239AC21E838564002B33C4 /* Extensions.swift */; };
+		C4239ACC1E8387EF002B33C4 /* HalfModalInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4239AC81E8387EF002B33C4 /* HalfModalInteractiveTransition.swift */; };
+		C4239ACD1E8387EF002B33C4 /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4239AC91E8387EF002B33C4 /* HalfModalPresentationController.swift */; };
+		C4239ACE1E8387EF002B33C4 /* HalfModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4239ACA1E8387EF002B33C4 /* HalfModalTransitionAnimator.swift */; };
+		C4239ACF1E8387EF002B33C4 /* HalfModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4239ACB1E8387EF002B33C4 /* HalfModalTransitioningDelegate.swift */; };
+		C4239AD11E838881002B33C4 /* ViewProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4239AD01E838881002B33C4 /* ViewProfileVC.swift */; };
 		C4537EC41E5A1AE700D6BF94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4537EC31E5A1AE700D6BF94 /* AppDelegate.swift */; };
 		C4537EC91E5A1AE700D6BF94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4537EC71E5A1AE700D6BF94 /* Main.storyboard */; };
 		C4537ECB1E5A1AE700D6BF94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4537ECA1E5A1AE700D6BF94 /* Assets.xcassets */; };
@@ -72,6 +78,12 @@
 		0B7787C95B8EEED241B6BDBA /* Pods-timeSplit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-timeSplit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-timeSplit/Pods-timeSplit.debug.xcconfig"; sourceTree = "<group>"; };
 		167733128633D466E5245F83 /* Pods_timeSplit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_timeSplit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EF5344DB81245192344AA4A /* Pods-timeSplitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-timeSplitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-timeSplitTests/Pods-timeSplitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C4239AC21E838564002B33C4 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		C4239AC81E8387EF002B33C4 /* HalfModalInteractiveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalInteractiveTransition.swift; sourceTree = "<group>"; };
+		C4239AC91E8387EF002B33C4 /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
+		C4239ACA1E8387EF002B33C4 /* HalfModalTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalTransitionAnimator.swift; sourceTree = "<group>"; };
+		C4239ACB1E8387EF002B33C4 /* HalfModalTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalTransitioningDelegate.swift; sourceTree = "<group>"; };
+		C4239AD01E838881002B33C4 /* ViewProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewProfileVC.swift; sourceTree = "<group>"; };
 		C4537EC01E5A1AE700D6BF94 /* timeSplit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = timeSplit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4537EC31E5A1AE700D6BF94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4537EC81E5A1AE700D6BF94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -149,6 +161,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C4239AC11E83854D002B33C4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C4239AC81E8387EF002B33C4 /* HalfModalInteractiveTransition.swift */,
+				C4239AC91E8387EF002B33C4 /* HalfModalPresentationController.swift */,
+				C4239ACA1E8387EF002B33C4 /* HalfModalTransitionAnimator.swift */,
+				C4239ACB1E8387EF002B33C4 /* HalfModalTransitioningDelegate.swift */,
+				C4239AC21E838564002B33C4 /* Extensions.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		C4537EB71E5A1AE700D6BF94 = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +196,7 @@
 		C4537EC21E5A1AE700D6BF94 /* timeSplit */ = {
 			isa = PBXGroup;
 			children = (
+				C4239AC11E83854D002B33C4 /* Helpers */,
 				C4D4AE201E778E8B00CBC597 /* Model */,
 				C4D4AE211E778E9500CBC597 /* View */,
 				C4D4AE221E778E9A00CBC597 /* Controller */,
@@ -260,6 +285,7 @@
 				C4B161571E78F09100F7F06F /* InfoVC.swift */,
 				C4DD3EB41E7C7F3800925B43 /* TheoryCommentsVC.swift */,
 				C469EF401E81669A00336C11 /* ProfileVC.swift */,
+				C4239AD01E838881002B33C4 /* ViewProfileVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -494,11 +520,15 @@
 				C4B161471E78B14E00F7F06F /* DetailVC.swift in Sources */,
 				C4DD3EA71E7B25D600925B43 /* TheoryComment.swift in Sources */,
 				C4537EC41E5A1AE700D6BF94 /* AppDelegate.swift in Sources */,
+				C4239AC31E838564002B33C4 /* Extensions.swift in Sources */,
 				C4C711521E7F481E00C77BEA /* TimeSplitTextField.swift in Sources */,
+				C4239ACD1E8387EF002B33C4 /* HalfModalPresentationController.swift in Sources */,
 				C4D4AE241E778F1800CBC597 /* MainVC.swift in Sources */,
+				C4239AD11E838881002B33C4 /* ViewProfileVC.swift in Sources */,
 				C4D4AE281E77967900CBC597 /* EffectComment.swift in Sources */,
 				C4D4AE2A1E7798B400CBC597 /* DataService.swift in Sources */,
 				C4D4AE2C1E779A1400CBC597 /* Constants.swift in Sources */,
+				C4239ACF1E8387EF002B33C4 /* HalfModalTransitioningDelegate.swift in Sources */,
 				C4B1615B1E78FDD000F7F06F /* CommentCell.swift in Sources */,
 				C4B161551E78E4DA00F7F06F /* AddCommentVC.swift in Sources */,
 				C4DD3EB51E7C7F3800925B43 /* TheoryCommentsVC.swift in Sources */,
@@ -512,8 +542,10 @@
 				C4DD3EA91E7B2DDB00925B43 /* AddTheoryCommentVC.swift in Sources */,
 				C4DD3EAF1E7B38F300925B43 /* TheoryCell.swift in Sources */,
 				C4B161451E78A74000F7F06F /* AddEffectVC.swift in Sources */,
+				C4239ACC1E8387EF002B33C4 /* HalfModalInteractiveTransition.swift in Sources */,
 				C4B161521E78E1BF00F7F06F /* CommentsVC.swift in Sources */,
 				C4CB40131E80A18300E2EEA5 /* TimeSplitTextView.swift in Sources */,
+				C4239ACE1E8387EF002B33C4 /* HalfModalTransitionAnimator.swift in Sources */,
 				C4B1614C1E78BF7A00F7F06F /* StartVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
