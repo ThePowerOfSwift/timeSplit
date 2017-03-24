@@ -5,7 +5,7 @@ import Image from '../model/image';
 import bodyParser from 'body-parser';
 import passport from 'passport';
 import path from 'path';
-import fs from 'fs';
+// import fs from 'fs';
 import { authenticate } from '../middleware/authMiddleware';
 
 export default({ config, db }) => {
@@ -22,22 +22,25 @@ export default({ config, db }) => {
     });
   });
 
+  var fs = require('fs');
   var multer = require('multer');
-  api.post('/', multer({ dest: 'uploads/'}).single('upl'), function(req, res) {
+  api.post('/', multer({ dest: 'uploads/'}).single('upl'),(req, res) => {
 
     let fileExtension = path.extname(req.file.originalname);
-    var file = req.file.filename + fileExtension;
+    const appRoot = process.env.PWD + '/images';
+    var file = appRoot + '/' + req.file.filename + fileExtension;
 
     console.log(req.body);
     console.log(req.file);
-    res.status(204).end();
-    fs.rename(req.path, file, (err) => {
+    res.sendStatus(204).end();
+    fs.rename(req.file.path, file, (err) => {
       if (err) {
-        res.send(500);
+        res.sendStatus(500);
       } else {
         res.json({
           message: 'File uploaded successfully',
-          filename: req.file.filename + fileExtension
+          filename: req.file.filename + fileExtension,
+            url: `${process.env.PWD}/images/${req.file.filename + fileExtension}`
         });
       }
     });
@@ -50,27 +53,6 @@ export default({ config, db }) => {
   //   filename: function(req,file,cb) {
   //     cb(null, file.originalname);
   //   }
-  // });
-
-  // var upload = multer({
-  //   storage: storage
-  // });
-
-  // api.post('/', upload.any('avatar'), function(req, res) => {
-  //   let fileExtension = path.extname(req.file.originalname);
-  //   // const appRoot = process.env.PWD + '/images';
-  //   var file = appRoot + '/' + req.file.filename + fileExtension;
-  //
-  //   fs.rename(req.path, file, (err) => {
-  //     if (err) {
-  //       res.send(500);
-  //     } else {
-  //       res.json({
-  //         message: 'File uploaded successfully',
-  //         filename: req.file.filename + fileExtension
-  //       });
-  //     }
-  //   });
   // });
 
     //we are passing two objects in the addImage method.. which is defined above..

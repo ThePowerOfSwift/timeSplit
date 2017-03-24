@@ -43,26 +43,6 @@ app.get('/', function(req, res) {
 var multer = require('multer');
 // var fs = require('fs');
 
-// app.post('/', multer({ dest: 'uploads/'}).single('upl'), function(req, res) {
-//
-//   let fileExtension = path.extname(req.file.originalname);
-//   var file = req.file.filename + fileExtension;
-//
-//   console.log(req.body);
-//   console.log(req.file);
-//   res.status(204).end();
-//   fs.rename(req.path, file, (err) => {
-//     if (err) {
-//       res.send(500);
-//     } else {
-//       res.json({
-//         message: 'File uploaded successfully',
-//         filename: req.file.filename + fileExtension
-//       });
-//     }
-//   });
-// });
-
 app.post('/', multer({ dest: 'uploads/'}).single('upl'),(req, res) => {
 
   let fileExtension = path.extname(req.file.originalname);
@@ -71,7 +51,7 @@ app.post('/', multer({ dest: 'uploads/'}).single('upl'),(req, res) => {
 
   console.log(req.body);
   console.log(req.file);
-  res.status(204).end();
+  res.sendStatus(204).end();
   fs.rename(req.file.path, file, (err) => {
     if (err) {
       res.sendStatus(500);
