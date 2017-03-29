@@ -49,7 +49,6 @@ api.post('/add', authenticate, (req, res) => {
 
 // '/v1/profile/:id' - PUT - update an existing profile
   api.put('/add/:id', authenticate, (req, res) => {
-    var user_id = req.user.params.id
     Account.findById(req.params.id, (err, account) => {
       if (err) {
         res.send(err);

@@ -16,14 +16,23 @@ class MainVC: UIViewController {
     var authService = AuthService.instance
     
     var logInVC: LogInVC?
+    var currentAccount: Account?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         dataService.delegate = self
+        authService.delegate = self
+
         tableView.delegate = self
         tableView.dataSource = self
         DataService.instance.getAllEffects()
+        
+        if let account = currentAccount {
+            authService.fetchMe()
+            print(DEFAULTS_ID)
+            print(currentAccount?.id)
+        }
 
     }
     
@@ -85,6 +94,14 @@ extension MainVC: DataServiceDelegate {
     }
     
     func profileLoaded() {
+    }
+}
+
+extension MainVC: AuthServiceDelegate {
+    func loadMe() {
+        OperationQueue.main.addOperation {
+            self.authService.fetchMe()
+        }
     }
 }
 

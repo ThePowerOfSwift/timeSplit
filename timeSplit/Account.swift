@@ -11,10 +11,9 @@ import Foundation
 class Account {
     
     var id: String = ""
-    var profile: Profile?
     var username: String = ""
-    
-    static func parseAccountJSONData(data: Data) -> [Account] {
+
+    static func parseAccountJSONData(data: Data) -> Account {
         
         var account = [Account]()
         
@@ -28,7 +27,6 @@ class Account {
                     var info = Account()
                     info.id = details["_id"] as! String
                     info.username = details["username"] as! String
-//                    info.profile = details["profile"] as? Profile
                     
                     account.append(info)
                 }

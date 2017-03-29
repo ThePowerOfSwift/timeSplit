@@ -74,6 +74,9 @@ let DEFAULTS_EMAIL = "email"
 // Auth Token
 let DEFAULTS_TOKEN = "authToken"
 
+// ACCOUNT ID
+let DEFAULTS_ID = "_id"
+
 // ACCOUNT
 // REGISTER URL
 let POST_REGISTER_ACCT = "\(BASE_API_URL)/account/register"

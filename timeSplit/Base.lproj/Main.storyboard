@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="R5F-5j-Ute">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="R5F-5j-Ute">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -75,7 +75,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="160" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YuZ-DT-xrv">
-                                <rect key="frame" x="16" y="81" width="343" height="536"/>
+                                <rect key="frame" x="16" y="81" width="343" height="523"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="EffectCell" rowHeight="160" id="oeA-s2-MK9" customClass="EffectCell" customModule="timeSplit" customModuleProvider="target">
@@ -262,24 +262,24 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ftY-pD-sV7">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="604" width="375" height="63"/>
                                 <subviews>
                                     <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4qd-NC-G1h">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="b2a-CP-tZv">
-                                        <rect key="frame" x="16" y="4" width="343" height="46"/>
+                                        <rect key="frame" x="16" y="4" width="343" height="59"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ts_icons_splt" translatesAutoresizingMaskIntoConstraints="NO" id="4xH-pD-pFw">
-                                                <rect key="frame" x="0.0" y="0.0" width="51" height="46"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="51" height="59"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="51" id="Tao-3i-kr0"/>
                                                     <constraint firstAttribute="height" constant="59" id="c1Z-RZ-LjQ"/>
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nve-Sb-2Qg">
-                                                <rect key="frame" x="97.5" y="0.0" width="51" height="46"/>
+                                                <rect key="frame" x="97.5" y="0.0" width="51" height="59"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="59" id="16i-lE-dQn"/>
                                                     <constraint firstAttribute="width" constant="51" id="d5J-z9-com"/>
@@ -290,7 +290,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ksz-LX-ZhO">
-                                                <rect key="frame" x="194.5" y="0.0" width="51" height="46"/>
+                                                <rect key="frame" x="194.5" y="0.0" width="51" height="59"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="51" id="5VN-EL-X75"/>
                                                     <constraint firstAttribute="height" constant="59" id="jfx-Se-IfL"/>
@@ -301,7 +301,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Td7-6b-AW1">
-                                                <rect key="frame" x="292" y="0.0" width="51" height="46"/>
+                                                <rect key="frame" x="292" y="0.0" width="51" height="59"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="59" id="XKD-US-c0r"/>
                                                     <constraint firstAttribute="width" constant="51" id="g4I-eA-Ywp"/>
@@ -338,11 +338,11 @@
                             <constraint firstAttribute="trailing" secondItem="YuZ-DT-xrv" secondAttribute="trailing" constant="16" id="Wo1-M7-G9z"/>
                             <constraint firstItem="QHb-om-y3F" firstAttribute="leading" secondItem="63P-qp-kKs" secondAttribute="leading" id="fiB-kn-bfq"/>
                             <constraint firstItem="DiA-d4-oWU" firstAttribute="top" secondItem="PQ1-OQ-czn" secondAttribute="bottom" id="gNm-ZI-Zjh"/>
+                            <constraint firstItem="ftY-pD-sV7" firstAttribute="top" secondItem="YuZ-DT-xrv" secondAttribute="bottom" id="gYS-lZ-9ev"/>
                             <constraint firstItem="PQ1-OQ-czn" firstAttribute="leading" secondItem="63P-qp-kKs" secondAttribute="leading" id="gff-Bo-Dbp"/>
                             <constraint firstAttribute="trailing" secondItem="ftY-pD-sV7" secondAttribute="trailing" id="h03-Ev-6HU"/>
                             <constraint firstItem="QHb-om-y3F" firstAttribute="top" secondItem="63P-qp-kKs" secondAttribute="top" id="nJx-BE-qlg"/>
                             <constraint firstItem="YuZ-DT-xrv" firstAttribute="top" secondItem="QHb-om-y3F" secondAttribute="bottom" constant="16" id="p8K-cs-8wS"/>
-                            <constraint firstItem="DiA-d4-oWU" firstAttribute="top" secondItem="YuZ-DT-xrv" secondAttribute="bottom" constant="50" id="q5g-dB-n80"/>
                             <constraint firstItem="ftY-pD-sV7" firstAttribute="leading" secondItem="63P-qp-kKs" secondAttribute="leading" id="sxF-I3-8SJ"/>
                         </constraints>
                     </view>
@@ -2591,7 +2591,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Awz-4T-Ori" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bRy-Fy-840">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bRy-Fy-840">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2625,8 +2625,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="rQU-Iu-dUx"/>
-        <segue reference="TxO-iQ-4Yz"/>
-        <segue reference="yoe-dN-L2K"/>
-        <segue reference="xIn-ZM-Jeo"/>
+        <segue reference="E7w-dB-Mln"/>
+        <segue reference="FYa-pt-YN9"/>
+        <segue reference="3gW-AN-DBJ"/>
     </inferredMetricsTieBreakers>
 </document>

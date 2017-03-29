@@ -20,7 +20,7 @@ class ProfileVC: UIViewController {
     var logInVC: LogInVC?
     
     var profile: Profile?
-    var account: Account!
+    var myAccount: Account!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +28,15 @@ class ProfileVC: UIViewController {
         dataService.delegate = self
         authService.delegate = self
         
+        if let account = myAccount {
+            
+        }
+        
         nameLabel.text = profile?.name
         bioLabel.text = profile?.bio
         
 
-        print(authService.account)
+//        print(authService.account)
         print(authService.authToken!)
     }
     
