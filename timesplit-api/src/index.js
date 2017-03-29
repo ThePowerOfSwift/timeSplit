@@ -31,6 +31,7 @@ passport.use(new LocalStrategy({
 ));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
+// passport.session();
 
 // api routes v1
 app.use('/v1', routes);
@@ -52,29 +53,38 @@ var storage = multer.diskStorage({
     callback(null, filename);
   }
 });
-var upload = multer({
-  storage : storage }).single('upl');
+// var upload = multer({
+//   storage : storage }).single('upl');
 
-app.post('/', function(req, res) {
-  upload(req, res, function(err) {
-      // let fileExtension = path.extname(req.file.fieldname);
-      // let mimetype = req.file.mimetype;
-      // const appRoot = process.env.PWD + '/images';
-      // var file = appRoot + '/' + req.file.filename + fileExtension;
-      // fs.rename(req.file.path, file, (err) => {
-    if (err) {
-      return res.end("Error uploading file.");
-    }
-    res.json({
-        message: 'File uploaded successfully',
-        filename: req.file.filename, // + fileExtension,
-        url: `${process.env.PWD}/images/${req.file.filename}` //+ fileExtension
-      });
-      console.log(req.body);
-      console.log(req.file);
-      res.end("File is uploaded");
-    });
-});
+// NEW TEST
+import Image from './model/image';
+var upload = multer({ storage : storage });
+var type = upload.single('upl');
+
+app.post('/', type, function(req, res) {
+      var image = new Image ({
+        fieldname: req.file.fieldname,
+        originalname: req.file.originalname,
+        destination: req.file.destination,
+        mimetype: req.file.mimetype,
+        filename: req.file.filename,
+        path: req.file.path,
+        size: req.file.size,
+      })
+      image.save(function(err) {
+        if (err) {
+          return res.end("Error uploading file.");
+        } else {
+          res.json({
+            message: 'File uploaded successfully',
+            filename: req.file.filename, // + fileExtension,
+            url: `${process.env.PWD}/images/${req.file.filename}` //+ fileExtension
+          });
+          console.log(req.body);
+          console.log(req.file);
+          }
+      })
+  });
 
 app.server.listen(config.port);
 console.log(`Start on port ${app.server.address().port}`);

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -26,9 +26,9 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UVL-Rl-pQX">
+                <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UVL-Rl-pQX">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.0" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Must Be Logged In To Post" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNs-8t-OAv">
                     <rect key="frame" x="85" y="40" width="205" height="21"/>
@@ -59,7 +59,7 @@
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                 </textField>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="C4E-8K-OgR">
-                    <rect key="frame" x="77.5" y="167" width="220" height="30"/>
+                    <rect key="frame" x="77.5" y="188" width="220" height="30"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WAX-AL-k2e">
                             <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
@@ -95,7 +95,6 @@
                 </stackView>
             </subviews>
             <constraints>
-                <constraint firstItem="C4E-8K-OgR" firstAttribute="top" secondItem="Obx-9o-kew" secondAttribute="bottom" constant="35" id="BcK-ri-KBL"/>
                 <constraint firstItem="C4E-8K-OgR" firstAttribute="centerX" secondItem="Obx-9o-kew" secondAttribute="centerX" id="HQK-yl-lqM"/>
                 <constraint firstItem="UVL-Rl-pQX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="HUz-XK-gUC"/>
                 <constraint firstItem="Obx-9o-kew" firstAttribute="top" secondItem="qhQ-b5-dMF" secondAttribute="bottom" constant="12" id="J2A-V4-KPZ"/>
@@ -106,6 +105,7 @@
                 <constraint firstItem="Obx-9o-kew" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="imh-ix-ciZ"/>
                 <constraint firstItem="UVL-Rl-pQX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rd8-fC-kD4"/>
                 <constraint firstItem="qhQ-b5-dMF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rg0-Eh-sVw"/>
+                <constraint firstItem="C4E-8K-OgR" firstAttribute="top" secondItem="Obx-9o-kew" secondAttribute="bottom" constant="56" id="tFy-TJ-ci9"/>
                 <constraint firstItem="aNs-8t-OAv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="utH-vt-qes"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

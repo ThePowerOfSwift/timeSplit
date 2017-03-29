@@ -12,6 +12,7 @@ class LogInVC: UIViewController {
     
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passTF: UITextField!
+    @IBOutlet weak var nameTF: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +26,9 @@ class LogInVC: UIViewController {
     @IBAction func loginButtonTapped(sender: UIButton) {
         guard let email = emailTF.text, emailTF.text != "",
                 let pass = passTF.text, passTF.text != ""
+//                let name = nameTF.text, nameTF.text != ""
             else {
-                self.showAlert(with: "Error", message: "Please enter an email and a password to continue")
+                self.showAlert(with: "Error", message: "Please enter an email, password and name to continue")
                 return
         }
         AuthService.instance.registerUser(email: email, password: pass, completion: { Success in

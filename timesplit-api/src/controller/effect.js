@@ -30,17 +30,6 @@ export default({ config, db }) => {
     });
   });
 
-  // '/v1/effect/category/:category' - Get category
-  // api.get('/effect/:category', (req, res) => {
-  //   Effect.find({ category: req.params.effect }, (err, effect) => {
-  //     if (err) {
-  //       res.send(err);
-  //     }
-  //     res.json(effect);
-  //   });
-  // });
-
-
   // '/v1/effect/add' - POST - add a effect
   api.post('/add', authenticate, (req, res) => {
     let newEffect = new Effect();

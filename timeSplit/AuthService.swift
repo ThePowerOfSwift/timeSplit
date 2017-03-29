@@ -8,11 +8,17 @@
 
 import Foundation
 
+protocol AuthServiceDelegate: class {
+    func loadMe()
+}
+
 class AuthService {
     
     static let instance = AuthService()
     
     let defaults = UserDefaults.standard
+    weak var delegate: AuthServiceDelegate?
+    var account = [Account]()
     
     var isRegistered: Bool? {
         get {
@@ -50,9 +56,9 @@ class AuthService {
         }
     }
     
-    func registerUser(email username: String, password: String, completion: @escaping callback) {
+    func registerUser(email: String, password: String, completion: @escaping callback) {
         
-        let json = ["email": username, "password": password]
+        let json = ["email": email, "password": password]
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
         guard let URL = URL(string: POST_REGISTER_ACCT) else {
@@ -174,4 +180,68 @@ class AuthService {
         }
         
     }
+    
+    func fetchMe(_ token: String) {
+        let sessionConfig = URLSessionConfiguration.default
+        let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
+        guard let URL = URL(string: "\(GET_ME)/me") else { return }
+        var request = URLRequest(url: URL)
+        request.httpMethod = "GET"
+
+        let token = authToken
+        request.addValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
+        
+        let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+            if (error == nil) {
+                // Success
+                let statusCode = (response as! HTTPURLResponse).statusCode
+                print("URL Session Task Succeeded: HTTP \(statusCode)")
+                // Parse JSON Data
+                if let data = data {
+                    self.account = Account.parseAccountJSONData(data: data)
+                    self.delegate?.loadMe()
+                }
+            } else {
+                // Failure
+                print("URL Session Task Failed: \(error!.localizedDescription)")
+            }
+        })
+        task.resume()
+        session.finishTasksAndInvalidate()
+    }
+    
+    func getAccount(for account: Account) {
+        let sessionConfig = URLSessionConfiguration.default
+        let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
+        guard let URL = URL(string: "\(GET_ACCOUNT_BY_ID)/\(account.username)") else { return }
+        var request = URLRequest(url: URL)
+        request.httpMethod = "GET"
+        
+        let token = authToken
+        request.addValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
+        
+        let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+            if (error == nil) {
+                // Success
+                let statusCode = (response as! HTTPURLResponse).statusCode
+                print("URL Session Task Succeeded: HTTP \(statusCode)")
+                // Parse JSON Data
+                if let data = data {
+                    self.account = Account.parseAccountJSONData(data: data)
+                    self.delegate?.loadMe()
+                }
+            } else {
+                // Failure
+                print("URL Session Task Failed: \(error!.localizedDescription)")
+            }
+        })
+        task.resume()
+        session.finishTasksAndInvalidate()
+    }
 }
+
+
+
+
+
+

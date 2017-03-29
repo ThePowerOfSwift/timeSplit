@@ -45,7 +45,10 @@ class CommentsVC: UIViewController {
 extension CommentsVC: DataServiceDelegate {
     func addLikes() {
     }
-
+    
+    func profileLoaded() {
+    }
+    
     func effectsLoaded() {
     }
     

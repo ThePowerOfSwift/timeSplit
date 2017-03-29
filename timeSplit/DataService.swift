@@ -14,6 +14,7 @@ protocol DataServiceDelegate: class {
     func theoriesLoaded()
     func theoryCommentsLoaded()
     func addLikes()
+    func profileLoaded()
 }
 
 class DataService {
@@ -24,6 +25,7 @@ class DataService {
     var comments = [EffectComment]()
     var theories = [Theory]()
     var theoriesComments = [TheoryComment]()
+    var profile = [Profile]()
 //    var likes = [Effect]()
 
     
@@ -74,7 +76,7 @@ class DataService {
                 // Success
                 let statusCode = (response as! HTTPURLResponse).statusCode
                 print("URL Session Task Succeeded: HTTP \(statusCode)")
-                // Parase JSON data
+                // Parse JSON data
                 if let data = data {
                     self.comments = EffectComment.parseCommentJSONData(data: data)
                     self.delegate?.commentsLoaded()
@@ -83,6 +85,35 @@ class DataService {
                 // Failure
                 print("URL Session Task Failed: \(error!.localizedDescription)")
             }
+        })
+        task.resume()
+        session.finishTasksAndInvalidate()
+    }
+    
+    // GET A specific profile
+    func fetchProfile(for profile: Profile) {
+        let sessionConfig = URLSessionConfiguration.default
+        
+        let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
+        guard let URL = URL(string: "\(GET_PROFILE)/\(profile.id)") else { return }
+        var request = URLRequest(url: URL)
+        request.httpMethod = "GET"
+        
+        let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+            if (error == nil) {
+                // Success
+                let statusCode = (response as! HTTPURLResponse).statusCode
+                print("URL Session Task Succeeded: HTTP \(statusCode)")
+                // Parse JSON data
+                if let data = data {
+                    self.profile = Profile.parseProfileJSONData(data: data)
+                    self.delegate?.profileLoaded()
+                }
+            } else {
+                // Failure
+                print("URL Session Task Failed: \(error!.localizedDescription)")
+            }
+
         })
         task.resume()
         session.finishTasksAndInvalidate()
@@ -526,69 +557,71 @@ class DataService {
     }
     
     
-    // UPLOAD add a photo for effect
-    func UploadRequest(_ theoryId: String, URLString: String, completion: @escaping callback) {
-        
-        let json: [String: Any] = [
-            
-            "URLString": URLString,
-            "theory": theoryId
-        ]
-        
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-            let sessionConfig = URLSessionConfiguration.default
-            let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
-            
-            guard let URL = URL(string: "\(POST_UPLOAD_IMAGE)/\(theoryId)") else { return }
-            var request = URLRequest(url: URL)
-            request.httpMethod = "POST"
-            
-            let boundary = generateBoundaryString()
-            guard let token = AuthService.instance.authToken else {
-                completion(false)
-                return
-            }
-            
-            // define the multipart type
-            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-            
-            let body = NSMutableData()
-            let fname: String!
-            let mimetype = "image/png"
-            
-            body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
-            body.append("Content-Disposition:form-data; name=\"test\"\r\n\r\n".data(using: String.Encoding.utf8)!)
-            body.append("Content-Type: \(mimetype)\r\n\r\n".data(using: String.Encoding.utf8)!)
-            body.append(image-data!)
-            body.append("\r\n".data(using: String.Encoding.ut8)!)
-            body.append("--\(boundary)--\r\n".data(using: String.Encoding.utf8)!)
-            request.httpBody = body as Data
-            
-            let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
-                guard ((data) != nil), let _:URLResponse = response, error == nil else {
-                    print("error")
-                    return
-                }
-                
-                if let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) {
-                    print(dataString)
-                }
-            })
-            task.resume()
-            session.finishTasksAndInvalidate()
-            
-        } catch let err {
-            print(err)
-            completion(false)
-            
-        }
-    }
     
-    // Convert String for upload
-    func generateBoundaryString() -> String {
-        return "Boundary-\(NSUUID()).uuidString"
-    }
+    
+//    // UPLOAD add a photo for effect
+//    func UploadRequest(_ theoryId: String, URLString: String, completion: @escaping callback) {
+//        
+//        let json: [String: Any] = [
+//            
+//            "URLString": URLString,
+//            "theory": theoryId
+//        ]
+//        
+//        do {
+//            let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+//            let sessionConfig = URLSessionConfiguration.default
+//            let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
+//            
+//            guard let URL = URL(string: "\(POST_UPLOAD_IMAGE)/\(theoryId)") else { return }
+//            var request = URLRequest(url: URL)
+//            request.httpMethod = "POST"
+//            
+//            let boundary = generateBoundaryString()
+//            guard let token = AuthService.instance.authToken else {
+//                completion(false)
+//                return
+//            }
+//            
+//            // define the multipart type
+//            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+//            
+//            let body = NSMutableData()
+//            let fname: String!
+//            let mimetype = "image/png"
+//            
+//            body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
+//            body.append("Content-Disposition:form-data; name=\"test\"\r\n\r\n".data(using: String.Encoding.utf8)!)
+//            body.append("Content-Type: \(mimetype)\r\n\r\n".data(using: String.Encoding.utf8)!)
+//            body.append(image-data!)
+//            body.append("\r\n".data(using: String.Encoding.ut8)!)
+//            body.append("--\(boundary)--\r\n".data(using: String.Encoding.utf8)!)
+//            request.httpBody = body as Data
+//            
+//            let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+//                guard ((data) != nil), let _:URLResponse = response, error == nil else {
+//                    print("error")
+//                    return
+//                }
+//                
+//                if let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) {
+//                    print(dataString)
+//                }
+//            })
+//            task.resume()
+//            session.finishTasksAndInvalidate()
+//            
+//        } catch let err {
+//            print(err)
+//            completion(false)
+//            
+//        }
+//    }
+//    
+//    // Convert String for upload
+//    func generateBoundaryString() -> String {
+//        return "Boundary-\(NSUUID()).uuidString"
+//    }
     
 }
 

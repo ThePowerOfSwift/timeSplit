@@ -5,7 +5,7 @@ import initializeDb from '../db';
 import effect from '../controller/effect';
 import theory from '../controller/theory';
 import account from '../controller/account';
-import uploader from '../controller/fileupload';
+import image from '../controller/image';
 import profile from '../controller/profile';
 
 let router = express();
@@ -19,8 +19,9 @@ router.use(middleware({ config, db }));
 router.use('/effect', effect({ config, db }));
 router.use('/account', account({ config, db }));
 router.use('/theory', theory({ config, db }));
-router.use('/upload', uploader({ config, db }));
+router.use('/image', image({ config, db }));
 router.use('/profile', profile({ config, db }));
+
 });
 
 export default router;

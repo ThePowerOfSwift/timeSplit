@@ -46,7 +46,11 @@ class MainVC: UIViewController {
     }
     
     @IBAction func profileButtonTapped(sender: UIButton) {
-        performSegue(withIdentifier: "ShowProfileVC", sender: self)
+        if AuthService.instance.isAuthenticated == true {
+            performSegue(withIdentifier: "ShowProfileVC", sender: self)
+        } else {
+            showLogInVC()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -78,6 +82,9 @@ extension MainVC: DataServiceDelegate {
     }
     
     func addLikes() {
+    }
+    
+    func profileLoaded() {
     }
 }
 

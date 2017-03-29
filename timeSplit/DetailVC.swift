@@ -89,6 +89,9 @@ extension DetailVC: DataServiceDelegate {
     func addLikes() {
     }
     
+    func profileLoaded() {
+    }
+    
     func effectsLoaded() {
     }
     
@@ -96,7 +99,6 @@ extension DetailVC: DataServiceDelegate {
     }
     
     func commentsLoaded() {
-      
     }
     
     func theoryCommentsLoaded() {

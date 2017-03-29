@@ -4,7 +4,7 @@ import expressJwt from 'express-jwt';
 const TOKENTIME = 60*60*24*30; // 30 Days
 const SECRET = "W3 Hav3 th3 kn0w h0w";
 
-let authenticate = expressJwt({ secret: SECRET });
+let authenticate = expressJwt({ secret: SECRET })
 
 let generateAccessToken = (req, res, next) => {
   req.token = req.token || {};
@@ -27,4 +27,4 @@ module.exports = {
   authenticate,
   generateAccessToken,
   respond
-}
+};

@@ -1,21 +1,17 @@
 import mongoose from 'mongoose';
-import Effect from './effect';
-import Profile from './profile';
 let Schema = mongoose.Schema;
 
-// path and originalname are the fields stored in MongoDB
 let ImageSchema = new Schema({
-  path: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  originalname: {
-    type: String,
-    required: true
-  },
-  // effect: [{ type: Schema.Types.ObjectId, ref: 'Effect' }],
-  // postedBy: [{ type: Schema.Types.ObjectId, ref: 'Profile' }]
+  fieldname: String,
+  originalname: String,
+  encoding: String,
+  mimetype: String,
+  destination: String,
+  filename: String,
+  path: String,
+  size: Number,
+  created_at: Date,
+  updated_at: Date
 });
 
 module.exports = mongoose.model('Image', ImageSchema);

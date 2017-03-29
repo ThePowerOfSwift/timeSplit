@@ -51,7 +51,11 @@ class TheoryVC: UIViewController {
     }
     
     @IBAction func profileButtonTapped(sender: UIButton) {
-        performSegue(withIdentifier: "ShowProfileVC", sender: self)
+        if authService.isAuthenticated == true {
+            performSegue(withIdentifier: "ShowProfileVC", sender: self)
+        } else {
+            showLogInVC()
+        }
     }
     
     @IBAction func backButtonTapped(sender: UIButton) {
@@ -70,6 +74,9 @@ class TheoryVC: UIViewController {
 
 extension TheoryVC: DataServiceDelegate {
     func addLikes() {
+    }
+    
+    func profileLoaded() {
     }
 
     func theoriesLoaded() {
