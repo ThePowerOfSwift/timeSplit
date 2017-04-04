@@ -12,28 +12,109 @@ class Account {
     
     var id: String = ""
     var username: String = ""
-
-    static func parseAccountJSONData(data: Data) -> Account {
+    var name: String = ""
+    var bio: String = ""
+    var profileImageURL: String = ""
+    var website: String = ""
+    var __v: Int?
+    
+    static func parseAccountInfoJSONData(data: Data) -> Account {
         
-        var account = [Account]()
+        var myAccount = Account()
         
         do {
-            let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
             
-            // Parse JSON data
-            if let accountArray = jsonResult as? [Dictionary<String, Any>] {
-                for details in accountArray {
+            let jsonResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+            print(jsonResult)
+            
+            if let accountData = jsonResult as? [String:AnyObject] {
+                    var accountInfo = Account()
+                    accountInfo.username = (accountData["username"] as! String)
+                    accountInfo.id = (accountData["_id"] as! String)
+                    accountInfo.name = (accountData["name"] as! String)
+                    accountInfo.bio = (accountData["bio"] as! String)
+                    accountInfo.profileImageURL = (accountData["profileImageURL"] as! String)
+                    accountInfo.website = (accountData["website"] as! String)
                     
-                    var info = Account()
-                    info.id = details["_id"] as! String
-                    info.username = details["username"] as! String
-                    
-                    account.append(info)
-                }
+                
+                    print("This is your account USER_ID \(accountInfo.id)")
             }
         } catch let err {
             print(err)
         }
-        return account
+        return myAccount
     }
+    
+    
+    static func parseAccountJSONData(data: Data) -> [Account] {
+        
+        var myAccount = [Account]()
+        
+        do {
+            
+            let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+            print(jsonResult)
+            
+            if let accountData = jsonResult as? [Dictionary<String,AnyObject>] {
+                for info in accountData {
+                    var accountInfo = Account()
+                    accountInfo.username = info["username"] as! String
+                    accountInfo.id = info["_id"] as! String
+                    accountInfo.name = info["name"] as! String
+                    accountInfo.bio = info["bio"] as! String
+                    accountInfo.profileImageURL = info["profileImageURL"] as! String
+                    accountInfo.website = info["website"] as! String
+                    accountInfo.__v = info["__v"] as! Int
+                    
+                    myAccount.append(accountInfo)
+                    
+                    print("This is your account USER_ID \(accountInfo.id)")
+                    
+                } // else // { return }
+            }
+        } catch let err {
+            print(err)
+        }
+        return myAccount
+    }
+    
+//    func requestData(completion: ((_ data: Data) -> Void)) {
+//        
+//        let data = Account.parseAccountJSONData(data: Account.)
+//        
+//    }
+
+    
+//    
+//    static func parseAccountJSONData(data: Data) -> [Account] {
+//        
+//        var myAccount = [Account]()
+//        
+//        do {
+//            
+//            let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+//            print(jsonResult)
+//            
+//            if let accountData = jsonResult as? [Dictionary<String,AnyObject>] {
+//                for info in accountData {
+//                    var accountInfo = Account()
+//                    accountInfo.username = info["username"] as! String
+//                    accountInfo.id = info["_id"] as! String
+//                    accountInfo.name = info["name"] as! String
+//                    accountInfo.bio = info["bio"] as! String
+//                    accountInfo.profileImageURL = info["profileImageURL"] as! String
+//                    accountInfo.website = info["website"] as! String
+//                    accountInfo.__v = info["__v"] as! Int
+//                
+////                    myAccount.append(accountInfo)
+//                
+//                print("This is your account USER_ID \(accountInfo.id)")
+//                
+//                } // else // { return }
+//            }
+//        } catch let err {
+//            print(err)
+//        }
+//        return myAccount
+//    }
 }

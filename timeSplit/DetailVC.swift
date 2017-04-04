@@ -88,10 +88,7 @@ class DetailVC: UIViewController {
 extension DetailVC: DataServiceDelegate {
     func addLikes() {
     }
-    
-    func profileLoaded() {
-    }
-    
+
     func effectsLoaded() {
     }
     

@@ -76,9 +76,6 @@ extension TheoryVC: DataServiceDelegate {
     func addLikes() {
     }
     
-    func profileLoaded() {
-    }
-
     func theoriesLoaded() {
         print(dataService.theories)
         OperationQueue.main.addOperation {
@@ -115,7 +112,4 @@ extension TheoryVC: UITableViewDelegate, UITableViewDataSource {
         }
         
     }
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        cell.backgroundColor = UIColor.clear
-//    }
 }

@@ -75,7 +75,7 @@ let DEFAULTS_EMAIL = "email"
 let DEFAULTS_TOKEN = "authToken"
 
 // ACCOUNT ID
-let DEFAULTS_ID = "_id"
+//let DEFAULTS_ID = "_id"
 
 // ACCOUNT
 // REGISTER URL
@@ -84,10 +84,13 @@ let POST_REGISTER_ACCT = "\(BASE_API_URL)/account/register"
 let POST_LOGIN_ACCT = "\(BASE_API_URL)/account/login"
 
 // GET ME
-let GET_ME = "\(BASE_API_URL)/account"
+let GET_ME = "\(BASE_API_URL)/account/me"
 
 // GET Account by id
-let GET_ACCOUNT_BY_ID = "\(BASE_API_URL)/account"
+let GET_ACCOUNT_BY_ID = "\(BASE_API_URL)/account/profile/"
+
+// GET Account by id
+let GET_ACCOUNT_ID = "\(BASE_API_URL)/account/profile"
 
 
 

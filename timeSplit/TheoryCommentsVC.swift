@@ -44,10 +44,7 @@ class TheoryCommentsVC: UIViewController {
 extension TheoryCommentsVC: DataServiceDelegate {
     func addLikes() {
     }
-    
-    func profileLoaded() {
-    }
-    
+        
     func effectsLoaded() {
     }
     

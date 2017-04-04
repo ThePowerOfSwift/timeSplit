@@ -30,7 +30,6 @@ class Effect {
             // Parse JSON Data
             if let effects = jsonResult as? [Dictionary<String, AnyObject>] {
                 for effect in effects {
-                    
                     var newEffect = Effect()
                     newEffect.id = effect["_id"] as! String
                     newEffect.name = effect["name"] as! String
@@ -39,7 +38,6 @@ class Effect {
                     newEffect.effectedDate = effect["effectedDate"] as! String
                     newEffect.submittedBy = effect["submittedBy"] as! String
                     newEffect.likes = effect["likes"] as! Int
-                    
                     newEffect.commentNumber = effect["comments"]!.count as! Int
                     
                     mEffects.append(newEffect)

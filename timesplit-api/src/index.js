@@ -23,7 +23,6 @@ app.use(bodyParser.json({
 app.use(passport.initialize());
 let Account = require('./model/account');
 passport.use(new LocalStrategy({
-  // nameField: 'name',
   usernameField: 'email',
   passwordField: 'password'
 },

@@ -16,7 +16,8 @@ class MainVC: UIViewController {
     var authService = AuthService.instance
     
     var logInVC: LogInVC?
-    var currentAccount: Account?
+    
+    var DEFAULTS_ID = UserDefaults.standard.object(forKey: "DEFAULTS_ID")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +29,9 @@ class MainVC: UIViewController {
         tableView.dataSource = self
         DataService.instance.getAllEffects()
         
-        if let account = currentAccount {
-            authService.fetchMe()
-            print(DEFAULTS_ID)
-            print(currentAccount?.id)
-        }
-
+        authService.fetchMe()
+        print("This is defaults_id \(DEFAULTS_ID!)")
+        
     }
     
     func showLogInVC() {
@@ -92,15 +90,13 @@ extension MainVC: DataServiceDelegate {
     
     func addLikes() {
     }
-    
-    func profileLoaded() {
-    }
 }
 
 extension MainVC: AuthServiceDelegate {
     func loadMe() {
         OperationQueue.main.addOperation {
             self.authService.fetchMe()
+
         }
     }
 }

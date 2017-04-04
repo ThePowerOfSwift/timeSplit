@@ -1,7 +1,8 @@
 import  mongoose from 'mongoose';
 import { Router } from 'express';
 import Account from '../model/account';
-import Profile from '../model/profile';
+import Effect from './effect';
+import Theory from './theory';
 import bodyParser from 'body-parser';
 import passport from 'passport';
 import config from '../config';
@@ -28,7 +29,13 @@ export default ({ config, db }) => {
 
   // '/v1/account/register'
   api.post('/register', (req, res) => {
-    Account.register(new Account({ username: req.body.email}), req.body.password, function(err, account) {
+    Account.register(new Account({
+      username: req.body.email,
+      name: req.body.name,
+      bio: req.body.bio,
+      website: req.body.website,
+      profileImageURL: req.body.profileImageURL
+    }), req.body.password, function(err, account) {
       if (err) {
         if (err.name === "UserExistsError") {
           console.log("User Exists");
@@ -60,46 +67,50 @@ export default ({ config, db }) => {
     res.status(200).send('Successfully logged out');
   });
 
+  // '/v1/account/me' - GET profile
   api.get('/me', authenticate, (req, res) => {
-    res.status(200).json(req.user);
-  });
-
-  api.put('/:id', authenticate, (req, res) => {
-    var user_id = req.user.id
-    Account.findById({ user_id }, function(err, account) {
-      let accountInfo = new Account();
-      accountInfo.name = req.body.name;
-      accountInfo.location = req.body.location;
-      accountInfo.website = req.body.website;
-      accountInfo.profileImageURL = req.body.profileImageURL;
-      accountInfo.save(function(err) {
-        if (err) {
-          return res.send(err);
-        }
-        res.json({ message: 'Account info updated'});
-      });
+    var userId = req.user.id;
+    res.status(200).json({
+      id: req.user.id
     });
   });
 
-  // '/v1/profile/:id' - PUT - update an existing profile
-    api.put('/profile/:id', authenticate, (req, res) => {
-      Account.findById(req.params.id, (err, account) => {
-        if (err) {
-          res.send(err);
-        }
-        let profileInfo = new Profile();
-        profileInfo.name = req.body.name;
-        profileInfo.bio = req.body.bio;
-        profileInfo.website = req.body.website;
-        profileInfo.profileImageURL = req.body.profileImageURL;
-        profileInfo.account = account._id;
-        profileInfo.save((err, profile) => {
-          if (err) {
-            return res.send(err);
-          }
-          res.json({ message: 'Profile info has been updated' });
-        });
+  // '/v1/account/profile/'
+  api.get ('/profile/', authenticate, (req, res) => {
+    var userId = req.user.id;
+    var account = req.params.id;
+    var userAccount = { userId: account };
+    Account.findOne(userAccount, (err, account) => {
+      if (err) {
+        res.send(err);
+      }
+      res.status(200).json(account);
+    });
+  });
+
+  // '/v1/account/profile/:id - GET account profile
+  api.get('/profile/:id', authenticate, (req, res) => {
+    // var userId = req.params.id;
+    Account.findById(req.params.id, (err, account) => {
+      if (err) {
+        res.send(err);
+      }
+      res.status(200).json(account);
+    });
+  });
+
+  // '/v1/account/update/:id' - UPDATE profile
+  api.put('/update/:id', authenticate, (req, res) => {
+    var userToUpdate = req.user.id;
+    // var query = { _id: userToUpdate };
+      Account.findByIdAndUpdate({ id: userToUpdate },
+        { $set: {
+          name: req.body.name,
+          bio: req.body.bio,
+          website: req.body.website,
+          profileImageURL: req.body.profileImageURL }
       });
+      res.send('Successfully updated account info');
     });
 
   return api;

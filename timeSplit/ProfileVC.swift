@@ -13,31 +13,35 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var websiteLabel: UILabel!
     
-    var dataService = DataService.instance
     var authService = AuthService.instance
-    
+    var defaults = UserDefaults.standard
     var logInVC: LogInVC?
+    var DEFAULTS_ID = UserDefaults.standard.object(forKey: "DEFAULTS_ID")
+    var currentAccount: Account!
     
-    var profile: Profile?
-    var myAccount: Account!
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dataService.delegate = self
         authService.delegate = self
         
-        if let account = myAccount {
+        authService.fetchProfile(for: DEFAULTS_ID as! String)
+        
+        if let account = currentAccount {
             
+            authService.fetchProfile(for: DEFAULTS_ID as! String)
+            
+            nameLabel.text = account.name
+            bioLabel.text = account.bio
+            websiteLabel.text = currentAccount.website
         }
         
-        nameLabel.text = profile?.name
-        bioLabel.text = profile?.bio
+//        authService.fetchMyProfile()
         
+      
+        print(DEFAULTS_ID!)
 
-//        print(authService.account)
-        print(authService.authToken!)
     }
     
     func showLogInVC() {
@@ -46,7 +50,7 @@ class ProfileVC: UIViewController {
         self.present(logInVC!, animated: true, completion: nil)
     }
 
-  
+
     @IBAction func effectButtonTapped(sender: UIButton) {
         performSegue(withIdentifier: "ShowEffectVC", sender: self)
     }
@@ -58,49 +62,14 @@ class ProfileVC: UIViewController {
     @IBAction func infoButtonTapped(sender: UIButton) {
         performSegue(withIdentifier: "ShowInfoVC", sender: self)
     }
-    
-    
-}
-
-extension ProfileVC: DataServiceDelegate {
-    func addLikes() {
-    }
-    
-    func profileLoaded() {
-        print(dataService.profile)
-        OperationQueue.main.addOperation {
-            if self.authService.isAuthenticated == true {
-
-            }
-        }
-    }
-    
-    func effectsLoaded() {
-    }
-    
-    func theoriesLoaded() {
-    }
-    
-    func theoryCommentsLoaded() {
-    }
-    
-    func commentsLoaded() {
-    }
 }
 
 extension ProfileVC: AuthServiceDelegate {
+   
     func loadMe() {
-//        authService.getAccount(for: Account)
-//        print(account.id)
-////        if let user = account {
-////            account.id = account.id
-////            if let userProfile = profile {
-////                profile?.name = userProfile.name
-////                profile?.bio = userProfile.bio
-////            }
-////        }
-//        
+        
     }
+    
 }
 
 
