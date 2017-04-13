@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { Router } from 'express';
 import Effect from '../model/effect';
 import Comment from '../model/comment';
+import Account from '../model/account';
 import bodyParser from 'body-parser';
 import passport from 'passport';
 
@@ -39,6 +40,7 @@ export default({ config, db }) => {
     newEffect.effectedDate = req.body.effectedDate;
     newEffect.submittedBy = req.body.submittedBy;
     newEffect.likes = req.body.likes,
+    newEffect.account = req.user.id,
     newEffect.save(function(err) {
       if (err) {
         res.send(err);

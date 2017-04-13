@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 import passportLocalMongoose from 'passport-local-mongoose';
-import Effect from '../model/effect';
-import Theory from '../model/theory';
-import Image from '../model/image';
+import Effect from './effect';
+import Theory from './theory';
+import Image from './image';
 
 let Account = new Schema({
   email: String,
@@ -11,9 +11,7 @@ let Account = new Schema({
   name: String,
   bio: String,
   website: String,
-  profileImageURL: String,
-  // effects: { type: Schema.Types.ObjectId, ref: 'Effect'},
-  // theories: { type: Schema.Types.ObjectId, ref: 'Theory'}
+  profileImage: {type: Schema.Types.ObjectId, ref: 'Image'}
 });
 
 Account.plugin(passportLocalMongoose);

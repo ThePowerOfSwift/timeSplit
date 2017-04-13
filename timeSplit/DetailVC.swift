@@ -46,6 +46,9 @@ class DetailVC: UIViewController {
         likesHeart.addGestureRecognizer(tap)
         likesHeart.isUserInteractionEnabled = true
         
+        //Hide Autolayout Warning
+        UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
+        
     }
 
     @IBAction func commentsButtonTapped(sender: UIButton) {

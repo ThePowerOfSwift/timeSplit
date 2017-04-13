@@ -14,7 +14,7 @@ import { authenticate } from '../middleware/authMiddleware';
 export default({ config, db }) => {
   let api = Router();
 
-  // api.set('views', path.join(__dirname, 'views'));
+  // api.set('views', path.join(__dirname, '../views'));
   // api.set('view engine', 'pug');
   // api.get('/', function(req, res) {
   //   res.render('index', { title: 'Express' });
@@ -32,7 +32,7 @@ export default({ config, db }) => {
   // TEST VERSION
   var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-      callback(null, './uploads');
+      callback(null, '../uploads');
     },
     filename: function(req, file, callback) {
       var originalname = file.originalname;
@@ -44,7 +44,7 @@ export default({ config, db }) => {
   var upload = multer({
     storage : storage }).single('upl');
 
-  api.post('/', function(req, res) {
+  api.post('../account/', function(req, res) {
     upload(req, res, function(err) {
       if (err) {
         return res.end("Error uploading file.");

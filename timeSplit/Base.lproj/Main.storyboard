@@ -92,14 +92,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gCp-rt-H30">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="218"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="150"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oLu-W0-gEG">
-                                                    <rect key="frame" x="10.5" y="10" width="322.5" height="140"/>
+                                                    <rect key="frame" x="10" y="10" width="323" height="132"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WOd-t6-Src">
-                                                            <rect key="frame" x="0.0" y="0.0" width="322.5" height="140"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="322.5" height="132"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ttl-aD-Adi">
                                                                     <rect key="frame" x="0.0" y="0.0" width="322.5" height="22.5"/>
@@ -150,10 +150,10 @@
                                                                     </constraints>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="SVv-j9-pmc">
-                                                                    <rect key="frame" x="0.0" y="39" width="322.5" height="76"/>
+                                                                    <rect key="frame" x="0.0" y="39" width="322.5" height="68"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Oa-Fw-tXN">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="322.5" height="76"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="322.5" height="68"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             <nil key="highlightedColor"/>
@@ -167,7 +167,7 @@
                                                                     </constraints>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Aao-aL-gIA">
-                                                                    <rect key="frame" x="0.0" y="115" width="322.5" height="25"/>
+                                                                    <rect key="frame" x="0.0" y="107" width="322.5" height="25"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="PM9-3B-p02">
                                                                             <rect key="frame" x="0.0" y="0.0" width="91.5" height="25"/>
@@ -242,12 +242,12 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="gCp-rt-H30" secondAttribute="bottom" constant="-66" id="76U-9R-eSR"/>
                                                 <constraint firstItem="oLu-W0-gEG" firstAttribute="top" secondItem="x5L-ui-b0c" secondAttribute="top" constant="10" id="OeK-Nt-Dqh"/>
                                                 <constraint firstItem="gCp-rt-H30" firstAttribute="centerX" secondItem="oLu-W0-gEG" secondAttribute="centerX" id="X71-UA-sRu"/>
+                                                <constraint firstAttribute="bottom" secondItem="gCp-rt-H30" secondAttribute="bottom" constant="10" id="Ykw-S7-XfB"/>
                                                 <constraint firstItem="gCp-rt-H30" firstAttribute="leading" secondItem="x5L-ui-b0c" secondAttribute="leading" id="ZkV-Lc-fO5"/>
-                                                <constraint firstAttribute="bottom" secondItem="oLu-W0-gEG" secondAttribute="bottom" constant="10" id="ajA-h2-Auv"/>
                                                 <constraint firstItem="oLu-W0-gEG" firstAttribute="leading" secondItem="x5L-ui-b0c" secondAttribute="leading" constant="10" id="buD-Mn-dbk"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="oLu-W0-gEG" secondAttribute="bottom" constant="10" id="eBB-no-Sgp"/>
                                                 <constraint firstItem="gCp-rt-H30" firstAttribute="top" secondItem="x5L-ui-b0c" secondAttribute="top" id="izm-8Q-MUc"/>
                                                 <constraint firstAttribute="trailing" secondItem="oLu-W0-gEG" secondAttribute="trailing" constant="10" id="zmY-DV-uTL"/>
                                             </constraints>
@@ -690,16 +690,16 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="323" height="106"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEn-Q1-OfX">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="323" height="25"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="323" height="15"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="25" id="Rq8-qc-Ccr"/>
+                                                                        <constraint firstAttribute="height" constant="15" id="Rq8-qc-Ccr"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="Bebas" family="Bebas" pointSize="15"/>
                                                                     <color key="textColor" red="0.59999999999999998" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYp-VB-wLz">
-                                                                    <rect key="frame" x="0.0" y="25" width="323" height="56"/>
+                                                                    <rect key="frame" x="0.0" y="15" width="323" height="66"/>
                                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -1739,8 +1739,14 @@
                                 <color key="textColor" red="0.59999999999999998" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTI-pE-ewR">
-                                <rect key="frame" x="16" y="365" width="343" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BIO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTI-pE-ewR">
+                                <rect key="frame" x="16" y="405" width="343" height="22"/>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEBSITE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2WQ-fc-X8e">
+                                <rect key="frame" x="16" y="367" width="343" height="22"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1750,12 +1756,16 @@
                         <constraints>
                             <constraint firstItem="5Kf-Vt-RLV" firstAttribute="top" secondItem="olF-Yn-6Th" secondAttribute="bottom" id="8Kh-Bx-07Y"/>
                             <constraint firstItem="olF-Yn-6Th" firstAttribute="top" secondItem="WUR-jr-Xum" secondAttribute="top" id="CVA-Tc-J7A"/>
+                            <constraint firstItem="2WQ-fc-X8e" firstAttribute="leading" secondItem="WUR-jr-Xum" secondAttribute="leading" constant="16" id="Cfy-7G-hmp"/>
+                            <constraint firstItem="2WQ-fc-X8e" firstAttribute="width" secondItem="FN7-WS-LOs" secondAttribute="width" id="GCm-jl-qK7"/>
                             <constraint firstAttribute="trailing" secondItem="heI-tG-AXT" secondAttribute="trailing" id="I6I-Mx-eMY"/>
                             <constraint firstItem="JTI-pE-ewR" firstAttribute="leading" secondItem="WUR-jr-Xum" secondAttribute="leading" constant="16" id="Iu4-53-jq4"/>
+                            <constraint firstAttribute="trailing" secondItem="2WQ-fc-X8e" secondAttribute="trailing" constant="16" id="JTv-RK-UCY"/>
                             <constraint firstItem="IDn-ni-3Ua" firstAttribute="top" secondItem="WUR-jr-Xum" secondAttribute="top" id="Ml1-gF-cty"/>
-                            <constraint firstItem="JTI-pE-ewR" firstAttribute="top" secondItem="FN7-WS-LOs" secondAttribute="bottom" constant="16" id="O4K-Go-TpJ"/>
                             <constraint firstItem="IDn-ni-3Ua" firstAttribute="leading" secondItem="WUR-jr-Xum" secondAttribute="leading" id="PJy-eO-zSv"/>
                             <constraint firstItem="km4-Ol-6We" firstAttribute="centerX" secondItem="WUR-jr-Xum" secondAttribute="centerX" id="PKe-ne-7CP"/>
+                            <constraint firstItem="JTI-pE-ewR" firstAttribute="top" secondItem="2WQ-fc-X8e" secondAttribute="bottom" constant="16" id="QwV-OW-JtX"/>
+                            <constraint firstItem="2WQ-fc-X8e" firstAttribute="top" secondItem="FN7-WS-LOs" secondAttribute="bottom" constant="18" id="TG4-ac-Vbv"/>
                             <constraint firstAttribute="trailing" secondItem="JTI-pE-ewR" secondAttribute="trailing" constant="16" id="U3y-i5-0df"/>
                             <constraint firstItem="olF-Yn-6Th" firstAttribute="leading" secondItem="WUR-jr-Xum" secondAttribute="leading" id="UD1-r7-FIw"/>
                             <constraint firstItem="FN7-WS-LOs" firstAttribute="top" secondItem="km4-Ol-6We" secondAttribute="bottom" constant="24" id="W0D-Y4-iSf"/>
@@ -1765,6 +1775,7 @@
                             <constraint firstAttribute="trailing" secondItem="olF-Yn-6Th" secondAttribute="trailing" id="l5e-Gt-Lcw"/>
                             <constraint firstItem="5Kf-Vt-RLV" firstAttribute="top" secondItem="heI-tG-AXT" secondAttribute="bottom" id="sPL-X4-JB2"/>
                             <constraint firstAttribute="trailing" secondItem="FN7-WS-LOs" secondAttribute="trailing" constant="16" id="x67-AV-m0I"/>
+                            <constraint firstItem="JTI-pE-ewR" firstAttribute="width" secondItem="2WQ-fc-X8e" secondAttribute="width" id="yFZ-3i-Xxr"/>
                             <constraint firstItem="heI-tG-AXT" firstAttribute="leading" secondItem="WUR-jr-Xum" secondAttribute="leading" id="zpD-xE-PmY"/>
                         </constraints>
                     </view>
@@ -1773,6 +1784,7 @@
                         <outlet property="bioLabel" destination="JTI-pE-ewR" id="cz7-gq-sJL"/>
                         <outlet property="nameLabel" destination="FN7-WS-LOs" id="0YV-7l-1bW"/>
                         <outlet property="profileImage" destination="jWz-Gh-2yx" id="USc-1Q-UYc"/>
+                        <outlet property="websiteLabel" destination="2WQ-fc-X8e" id="rhf-5R-nrK"/>
                         <segue destination="Gr5-dF-Wzz" kind="show" identifier="ShowEffectVC" id="rQU-Iu-dUx"/>
                         <segue destination="ehA-hh-ApS" kind="show" identifier="ShowInfoVC" id="yoe-dN-L2K"/>
                         <segue destination="Y8P-Zc-0XB" kind="show" identifier="ShowTheoryVC" id="xIn-ZM-Jeo"/>
@@ -2634,9 +2646,9 @@
         <image name="ts_icons_theoryUnactive" width="86" height="82"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gnz-zK-KDK"/>
+        <segue reference="rQU-Iu-dUx"/>
+        <segue reference="E7w-dB-Mln"/>
+        <segue reference="3gW-AN-DBJ"/>
         <segue reference="FYa-pt-YN9"/>
-        <segue reference="9KX-qw-PFe"/>
-        <segue reference="0yW-Yo-yrW"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -26,6 +26,8 @@ class DataService {
 //    var likes = [Effect]()
 
     
+    
+    
 // ---- EFFECTS
     // GET all effects
     func getAllEffects() {
@@ -153,7 +155,8 @@ class DataService {
             "description": description,
             "effectedDate": effectedDate,
             "submittedBy": submittedBy,
-            "likes": likes
+            "likes": likes,
+            "account": UserDefaults.standard.object(forKey: "DEFAULTS_ID")!
             ]
         
         do {

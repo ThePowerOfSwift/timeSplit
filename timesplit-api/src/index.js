@@ -7,8 +7,10 @@ import path from 'path';
 import config from './config';
 import routes from './routes';
 const LocalStrategy = require('passport-local').Strategy;
-var fs = require('fs');
-var multer = require('multer');
+import fs from 'fs';
+import multer from 'multer';
+// import image from './controller/image';
+
 
 let app = express();
 app.server = http.createServer(app);
@@ -36,7 +38,7 @@ passport.deserializeUser(Account.deserializeUser());
 app.use('/v1', routes);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-app.get('/', function(req, res) {
+app.get('/account/', function(req, res) {
   res.render('index', { title: 'Express' });
 });
 
@@ -52,11 +54,8 @@ var storage = multer.diskStorage({
     callback(null, filename);
   }
 });
-// var upload = multer({
-//   storage : storage }).single('upl');
 
 // NEW TEST
-import Image from './model/image';
 var upload = multer({ storage : storage });
 var type = upload.single('upl');
 

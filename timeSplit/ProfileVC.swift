@@ -19,28 +19,32 @@ class ProfileVC: UIViewController {
     var defaults = UserDefaults.standard
     var logInVC: LogInVC?
     var DEFAULTS_ID = UserDefaults.standard.object(forKey: "DEFAULTS_ID")
-    var currentAccount: Account!
+    
+    var account: Account?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         authService.delegate = self
+        authService.fetchProfile()
         
-        authService.fetchProfile(for: DEFAULTS_ID as! String)
+        dump(self.account)
         
-        if let account = currentAccount {
+        if let info = self.account {
+
+            self.account = authService.myAccount
             
-            authService.fetchProfile(for: DEFAULTS_ID as! String)
+            bioLabel.text = self.account?.bio
             
-            nameLabel.text = account.name
-            bioLabel.text = account.bio
-            websiteLabel.text = currentAccount.website
+            
+            print("This is working \(info)")
+            
         }
         
-//        authService.fetchMyProfile()
-        
-      
         print(DEFAULTS_ID!)
+        
+        //Hide Autolayout Warning
+        UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
 
     }
     
@@ -49,7 +53,6 @@ class ProfileVC: UIViewController {
         logInVC?.modalPresentationStyle = UIModalPresentationStyle.formSheet
         self.present(logInVC!, animated: true, completion: nil)
     }
-
 
     @IBAction func effectButtonTapped(sender: UIButton) {
         performSegue(withIdentifier: "ShowEffectVC", sender: self)
@@ -65,11 +68,13 @@ class ProfileVC: UIViewController {
 }
 
 extension ProfileVC: AuthServiceDelegate {
-   
+
     func loadMe() {
-        
-    }
+
+        self.account = authService.myAccount
     
+    }
 }
+
 
 

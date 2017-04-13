@@ -16,11 +16,12 @@ class AuthService {
     static let instance = AuthService()
     weak var delegate: AuthServiceDelegate?
     var account = Account()
-    var myAccount = [Account]()
+    var myAccount = Account()
     
     let defaults = UserDefaults.standard
     var DEFAULTS_ID = UserDefaults.standard.object(forKey: "DEFAULTS_ID")
     var _id: String?
+    
     
     var isRegistered: Bool? {
         get {
@@ -183,7 +184,7 @@ class AuthService {
     }
 
     
-    func fetchProfile(for id: String) {
+    func fetchProfile() {
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
         guard let URL = URL(string: "\(GET_ACCOUNT_ID)/\(account.id)") else { return }
@@ -204,6 +205,7 @@ class AuthService {
                     if let data = data {
                         self.myAccount = Account.parseAccountJSONData(data: data)
                         self.delegate?.loadMe()
+                    
                     }
                 } else {
                     // Failure
@@ -218,40 +220,42 @@ class AuthService {
         }
     }
     
-    func fetchMyProfile() {
-        let sessionConfig = URLSessionConfiguration.default
-        let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
-        guard let URL = URL(string: GET_ACCOUNT_BY_ID) else { return }
-        var request = URLRequest(url: URL)
-        request.httpMethod = "GET"
-        
-        let token = self.authToken
-        request.addValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
-        request.addValue("Content-Type", forHTTPHeaderField: "application-json")
-        
-        do {
-            let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
-                if (error == nil) {
-                    // Success
-                    let statusCode = (response as! HTTPURLResponse).statusCode
-                    print("URL Session Task Succeeded: HTTP \(statusCode) :Account id loaded" )
-                    // Parse JSON Data
-                    if let data = data {
-                        self.account = Account.parseAccountInfoJSONData(data: data)
-                        self.delegate?.loadMe()
-                    }
-                } else {
-                    // Failure
-                    print("URL Session Task Failed: \(error!.localizedDescription)")
-                }
-            })
-            task.resume()
-            session.finishTasksAndInvalidate()
-            
-        } catch let err {
-            print(err)
-        }
-    }
+//    func fetchMyProfile() {
+//        let sessionConfig = URLSessionConfiguration.default
+//        let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
+//        guard let URL = URL(string: GET_ACCOUNT_BY_ID) else { return }
+//        var request = URLRequest(url: URL)
+//        request.httpMethod = "GET"
+//        
+//        let token = self.authToken
+//        request.addValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
+//        request.addValue("Content-Type", forHTTPHeaderField: "application-json")
+//        
+//        do {
+//            let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+//                if (error == nil) {
+//                    // Success
+//                    let statusCode = (response as! HTTPURLResponse).statusCode
+//                    print("URL Session Task Succeeded: HTTP \(statusCode) :Account id loaded" )
+//                    // Parse JSON Data
+//                    if let data = data {
+//                        self.account = Account.parseAccountInfoJSONData(data: data)
+//                        self.delegate?.loadMe()
+//                    }
+//                } else {
+//                    // Failure
+//                    print("URL Session Task Failed: \(error!.localizedDescription)")
+//                }
+//            })
+//            task.resume()
+//            session.finishTasksAndInvalidate()
+//            
+//        } catch let err {
+//            print(err)
+//        }
+//    }
+    
+//    func getProfileData(for account: ((_ result: [Account]) -> ())
     
     func fetchMe() {
         let sessionConfig = URLSessionConfiguration.default

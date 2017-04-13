@@ -22,6 +22,7 @@
 		C4537EE81E5A20A300D6BF94 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4537EE71E5A20A300D6BF94 /* GoogleService-Info.plist */; };
 		C465F48B1E7A5B5A00155954 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B161461E78B14E00F7F06F /* DetailVC.swift */; };
 		C469EF411E81669A00336C11 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469EF401E81669A00336C11 /* ProfileVC.swift */; };
+		C484995C1E942B4700668D1E /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = C484995B1E942B4700668D1E /* Image.swift */; };
 		C48A14A41E863DAF00B77199 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A14A31E863DAF00B77199 /* Account.swift */; };
 		C4B1613D1E77A4D000F7F06F /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B1613C1E77A4D000F7F06F /* AuthService.swift */; };
 		C4B1613F1E77B75F00F7F06F /* EffectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B1613E1E77B75F00F7F06F /* EffectCell.swift */; };
@@ -96,6 +97,7 @@
 		C4537EDA1E5A1AE700D6BF94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4537EE71E5A20A300D6BF94 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C469EF401E81669A00336C11 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		C484995B1E942B4700668D1E /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		C48A14A31E863DAF00B77199 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		C4B1613C1E77A4D000F7F06F /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		C4B1613E1E77B75F00F7F06F /* EffectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectCell.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				C4D4AE271E77967900CBC597 /* EffectComment.swift */,
 				C4DD3EA41E7B239D00925B43 /* Theory.swift */,
 				C4DD3EA61E7B25D600925B43 /* TheoryComment.swift */,
+				C484995B1E942B4700668D1E /* Image.swift */,
 				C48A14A31E863DAF00B77199 /* Account.swift */,
 			);
 			name = Model;
@@ -517,6 +520,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4DD3EB11E7B39FF00925B43 /* TheoryCommentCell.swift in Sources */,
+				C484995C1E942B4700668D1E /* Image.swift in Sources */,
 				C4B1613F1E77B75F00F7F06F /* EffectCell.swift in Sources */,
 				C4B1614F1E78DC5600F7F06F /* TheoryVC.swift in Sources */,
 				C4D4AE261E778F6F00CBC597 /* Effect.swift in Sources */,

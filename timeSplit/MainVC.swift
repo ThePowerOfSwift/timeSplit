@@ -19,6 +19,8 @@ class MainVC: UIViewController {
     
     var DEFAULTS_ID = UserDefaults.standard.object(forKey: "DEFAULTS_ID")
     
+    var me: [Account] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,7 +32,13 @@ class MainVC: UIViewController {
         DataService.instance.getAllEffects()
         
         authService.fetchMe()
-        print("This is defaults_id \(DEFAULTS_ID!)")
+        print("This is defaults_id from fetchMe AuthService Function \(DEFAULTS_ID!)")
+        
+//        authService.fetchProfile(for: me)
+
+
+        //Hide Autolayout Warning
+        UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
         
     }
     
@@ -67,6 +75,11 @@ class MainVC: UIViewController {
                 destinationVC.selectedEffect = dataService.effects[indexPath.row]
             }
         }
+        
+        if segue.identifier == "ShowProfileVC" {
+            let destinationVC = segue.destination as! ProfileVC
+//            destinationVC.myAccount = authService.myAccount
+        }
     }
 }
 
@@ -94,11 +107,14 @@ extension MainVC: DataServiceDelegate {
 
 extension MainVC: AuthServiceDelegate {
     func loadMe() {
-        OperationQueue.main.addOperation {
-            self.authService.fetchMe()
-
-        }
+        
     }
+
+    
+    func loadMe(data: Account) {
+        
+    }
+        
 }
 
 extension MainVC: UITableViewDelegate, UITableViewDataSource {

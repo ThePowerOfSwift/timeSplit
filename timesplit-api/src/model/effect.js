@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import Comment from './comment';
+import Account from './account';
 let Schema = mongoose.Schema;
 
 let EffectSchema = new Schema({
@@ -18,13 +19,18 @@ let EffectSchema = new Schema({
   effectedDate: {
     type: String
   },
+  likes: {
+    type: Number
+  },
   submittedBy: {
     type: String,
     required: true
   },
-  likes: {
-    type: Number
-  },
+  // submittedBy: {
+  //   type: Schema.Types.Name, ref: 'Account'
+  //   required: true
+  // },
+  account: { type: Schema.Types.ObjectId, ref: 'Account'},
   comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
 });
 
