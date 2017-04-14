@@ -87,7 +87,7 @@ let POST_LOGIN_ACCT = "\(BASE_API_URL)/account/login"
 let GET_ME = "\(BASE_API_URL)/account/me"
 
 // GET Account by id
-let GET_ACCOUNT_BY_ID = "\(BASE_API_URL)/account/profile/"
+let GET_ACCOUNT_BY_ID = "\(BASE_API_URL)/account/profile"
 
 // GET Account by id
 let GET_ACCOUNT_ID = "\(BASE_API_URL)/account/profile"

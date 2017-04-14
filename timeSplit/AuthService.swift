@@ -72,7 +72,6 @@ class AuthService {
         
         var request = URLRequest(url: URL)
         request.httpMethod = "POST"
-        
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         do {
@@ -184,10 +183,10 @@ class AuthService {
     }
 
     
-    func fetchProfile() {
+    func fetchProfile(for account: Account) {
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
-        guard let URL = URL(string: "\(GET_ACCOUNT_ID)/\(account.id)") else { return }
+        guard let URL = URL(string: "\(GET_ACCOUNT_BY_ID)/\(account.id)") else { return }
         var request = URLRequest(url: URL)
         request.httpMethod = "GET"
         
@@ -205,7 +204,6 @@ class AuthService {
                     if let data = data {
                         self.myAccount = Account.parseAccountJSONData(data: data)
                         self.delegate?.loadMe()
-                    
                     }
                 } else {
                     // Failure

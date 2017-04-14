@@ -20,26 +20,32 @@ class ProfileVC: UIViewController {
     var logInVC: LogInVC?
     var DEFAULTS_ID = UserDefaults.standard.object(forKey: "DEFAULTS_ID")
     
-    var account: Account?
+    var account = Account()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         authService.delegate = self
-        authService.fetchProfile()
+        authService.fetchProfile(for: account)
+        
+        self.account = AuthService.instance.myAccount
+
         
         dump(self.account)
+        dump(authService.myAccount)
         
-        if let info = self.account {
+//        configureUI(account: authService.myAccount)
 
-            self.account = authService.myAccount
-            
-            bioLabel.text = self.account?.bio
-            
-            
-            print("This is working \(info)")
-            
-        }
+        
+//        if let info = self.account {
+//
+//            
+//            bioLabel.text = self.account?.bio
+//            
+//            
+//            print("This is working \(info)")
+//            
+//        }
         
         print(DEFAULTS_ID!)
         
@@ -48,9 +54,19 @@ class ProfileVC: UIViewController {
 
     }
     
+    func configureUI(account: Account) {
+        
+        if let account = self.account {
+            bioLabel.text = account.bio
+            nameLabel.text = account.name
+            websiteLabel.text = account.website
+        }
+       
+    }
+    
     func showLogInVC() {
         logInVC = LogInVC()
-        logInVC?.modalPresentationStyle = UIModalPresentationStyle.formSheet
+        logInVC?.modalPresesntationStyle = UIModalPresentationStyle.formSheet
         self.present(logInVC!, animated: true, completion: nil)
     }
 
@@ -70,9 +86,7 @@ class ProfileVC: UIViewController {
 extension ProfileVC: AuthServiceDelegate {
 
     func loadMe() {
-
-        self.account = authService.myAccount
-    
+        
     }
 }
 

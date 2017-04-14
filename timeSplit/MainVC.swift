@@ -31,7 +31,7 @@ class MainVC: UIViewController {
         tableView.dataSource = self
         DataService.instance.getAllEffects()
         
-        authService.fetchMe()
+//        authService.fetchMe()
         print("This is defaults_id from fetchMe AuthService Function \(DEFAULTS_ID!)")
         
 //        authService.fetchProfile(for: me)
@@ -111,7 +111,7 @@ extension MainVC: AuthServiceDelegate {
     }
 
     
-    func loadMe(data: Account) {
+    func loadMe(for data: Account) {
         
     }
         

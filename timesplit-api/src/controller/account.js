@@ -99,19 +99,52 @@ export default ({ config, db }) => {
     });
   });
 
-  // '/v1/account/update/:id' - UPDATE profile
-  api.put('/update/:id', authenticate, (req, res) => {
-    var userToUpdate = req.user.id;
-    // var query = { _id: userToUpdate };
-      Account.findByIdAndUpdate({ id: userToUpdate },
-        { $set: {
-          name: req.body.name,
-          bio: req.body.bio,
-          website: req.body.website,
-          profileImageURL: req.body.profileImageURL }
+  // // '/v1/account/update/:id' - UPDATE profile
+  // api.put('/update/:id', authenticate, (req, res) => {
+  //   var userToUpdate = req.user.id;
+  //   // var query = { _id: userToUpdate };
+  //     Account.findByIdAndUpdate({ id: userToUpdate },
+  //       { $set: {
+  //         name: req.body.name,
+  //         bio: req.body.bio,
+  //         website: req.body.website,
+  //         profileImageURL: req.body.profileImageURL
+  //       }}, function (err, result) {
+  //       if (err) {
+  //         return res.send(err);
+  //       }
+  //         res.json(result);
+  //   });
+  //      res.send('Successfully updated account info');
+  //   });
+
+    // '/v1/account/update/:id' - UPDATE profile
+    api.put('/update/:id', authenticate, (req, res) => {
+      var userToUpdate = req.params.id;
+      // var query = { _id: userToUpdate };
+        Account.findById(userToUpdate, function (err, account) {
+          if (err) {
+            res.status(500).send(err);
+          } else {
+              account.name = req.body.name || account.name;
+              account.bio = req.body.bio || account.bio;
+              account.website = req.body.website || account.website;
+              account.profileImage = req.body.profileImage || account.profileImage;
+              // Save the doc
+              account.save(function (err, account) {
+                if (err) {
+                  res.status(500).send(err)
+                }
+                var response = {
+                  message: "Account Info updated",
+                  id: userToUpdate,
+                  account
+                };
+                res.send(response);
+              });
+            }
+          });
       });
-      res.send('Successfully updated account info');
-    });
 
   return api;
 }
