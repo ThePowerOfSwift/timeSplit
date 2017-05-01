@@ -54,7 +54,10 @@ let POST_ADD_NEW_THEORY_COMMENT = "\(BASE_API_URL)/theory/comments/add"
 let POST_PHOTO_EFFECTS = "\(BASE_API_URL)/uploads/effects"
 
 // POST add profile photo 
-let POST_PROFILE_PHOTO = "\(BASE_API_URL)/uploads/profiles"
+let POST_PROFILE_PHOTO = "http://localhost:3005/images"
+
+// GET Profile IMAGE
+let GET_PROFILE_IMAGE = "\(BASE_API_URL)/image/"
 
 
 // PROFILES
@@ -63,6 +66,11 @@ let POST_PROFILE = "\(BASE_API_URL)/profile/add"
 
 // GET specific profile
 let GET_PROFILE = "\(BASE_API_URL)/profile/"
+
+// PUT update specific profile
+let UPDATE_PROFILE = "\(BASE_API_URL)/account/update"
+
+
 
 // Boolean auth UserDefaults keys
 let DEFAULTS_REGISTERED = "isRegistered"
@@ -78,17 +86,16 @@ let DEFAULTS_TOKEN = "authToken"
 //let DEFAULTS_ID = "_id"
 
 // ACCOUNT
-// REGISTER URL
+// REGISTER URL     // LOGIN URL
 let POST_REGISTER_ACCT = "\(BASE_API_URL)/account/register"
-
 let POST_LOGIN_ACCT = "\(BASE_API_URL)/account/login"
 
-// GET ME
+// GET ALL          // GET ME
+let GET_ALL = "\(BASE_API_URL)/account/getall"
 let GET_ME = "\(BASE_API_URL)/account/me"
 
 // GET Account by id
 let GET_ACCOUNT_BY_ID = "\(BASE_API_URL)/account/profile"
-
 // GET Account by id
 let GET_ACCOUNT_ID = "\(BASE_API_URL)/account/profile"
 

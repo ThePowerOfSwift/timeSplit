@@ -8,28 +8,53 @@
 
 import UIKit
 
-class ViewProfileVC: UIViewController {
+class ViewProfileVC: UIViewController, HalfModalPresentable {
+    
+    var authService = AuthService.instance
+    var selectedProfile: Account!
+    
+    @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var websiteLabel: UILabel!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        authService.getAll()
+        
+        configureUI()
+        
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func configureUI() {
+        
+        if let account = selectedProfile {
+            bioLabel.text = account.bio
+            nameLabel.text = account.name
+            websiteLabel.text = account.website
+        }
     }
-    */
+    
+    @IBAction func cancelButtonTapped(sender: AnyObject) {
+        if let delegate = navigationController?.transitioningDelegate as? HalfModalTransitioningDelegate {
+            delegate.interactiveDismiss = false
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+}
 
+extension ViewProfileVC: AuthServiceDelegate {
+    
+    func loadMe() {
+        
+    }
+    
+    func getAll() {
+        
+    }
+    
 }

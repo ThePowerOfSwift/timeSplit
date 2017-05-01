@@ -26,7 +26,7 @@ class InfoVC: UIViewController {
     }
     
     @IBAction func profileButtonTapped(sender: UIButton) {
-        performSegue(withIdentifier: "ShowProfileVC", sender: self)
+        performSegue(withIdentifier: "ShowProfilesVC", sender: self)
     }
 
 

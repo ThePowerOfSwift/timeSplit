@@ -7,6 +7,7 @@ target 'timeSplit' do
 
   # Pods for timeSplit
   # pod 'Firebase/Core'
+  pod 'Kingfisher'
 
 
   target 'timeSplitTests' do

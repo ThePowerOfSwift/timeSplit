@@ -24,6 +24,10 @@
 		C469EF411E81669A00336C11 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469EF401E81669A00336C11 /* ProfileVC.swift */; };
 		C484995C1E942B4700668D1E /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = C484995B1E942B4700668D1E /* Image.swift */; };
 		C48A14A41E863DAF00B77199 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A14A31E863DAF00B77199 /* Account.swift */; };
+		C4A3DD6C1EA5AD740008049C /* AppNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A3DD6B1EA5AD740008049C /* AppNavController.swift */; };
+		C4B03B081EA1450A000A1154 /* ProfilesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B03B071EA1450A000A1154 /* ProfilesVC.swift */; };
+		C4B03B0A1EA14D7A000A1154 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B03B091EA14D7A000A1154 /* AccountCell.swift */; };
+		C4B03B0C1EA15117000A1154 /* UIImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B03B0B1EA15117000A1154 /* UIImageView+Kingfisher.swift */; };
 		C4B1613D1E77A4D000F7F06F /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B1613C1E77A4D000F7F06F /* AuthService.swift */; };
 		C4B1613F1E77B75F00F7F06F /* EffectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B1613E1E77B75F00F7F06F /* EffectCell.swift */; };
 		C4B161421E78553C00F7F06F /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B161401E78553C00F7F06F /* LogInVC.swift */; };
@@ -99,6 +103,10 @@
 		C469EF401E81669A00336C11 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		C484995B1E942B4700668D1E /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		C48A14A31E863DAF00B77199 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		C4A3DD6B1EA5AD740008049C /* AppNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNavController.swift; sourceTree = "<group>"; };
+		C4B03B071EA1450A000A1154 /* ProfilesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilesVC.swift; sourceTree = "<group>"; };
+		C4B03B091EA14D7A000A1154 /* AccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
+		C4B03B0B1EA15117000A1154 /* UIImageView+Kingfisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Kingfisher.swift"; sourceTree = "<group>"; };
 		C4B1613C1E77A4D000F7F06F /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		C4B1613E1E77B75F00F7F06F /* EffectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectCell.swift; sourceTree = "<group>"; };
 		C4B161401E78553C00F7F06F /* LogInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
@@ -168,11 +176,13 @@
 		C4239AC11E83854D002B33C4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				C4239AC81E8387EF002B33C4 /* HalfModalInteractiveTransition.swift */,
 				C4239AC91E8387EF002B33C4 /* HalfModalPresentationController.swift */,
+				C4239AC81E8387EF002B33C4 /* HalfModalInteractiveTransition.swift */,
 				C4239ACA1E8387EF002B33C4 /* HalfModalTransitionAnimator.swift */,
 				C4239ACB1E8387EF002B33C4 /* HalfModalTransitioningDelegate.swift */,
 				C4239AC21E838564002B33C4 /* Extensions.swift */,
+				C4B03B0B1EA15117000A1154 /* UIImageView+Kingfisher.swift */,
+				C4A3DD6B1EA5AD740008049C /* AppNavController.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -269,6 +279,7 @@
 				C4DD3EB01E7B39FF00925B43 /* TheoryCommentCell.swift */,
 				C4C711511E7F481E00C77BEA /* TimeSplitTextField.swift */,
 				C4CB40121E80A18300E2EEA5 /* TimeSplitTextView.swift */,
+				C4B03B091EA14D7A000A1154 /* AccountCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -291,6 +302,7 @@
 				C4B161571E78F09100F7F06F /* InfoVC.swift */,
 				C4DD3EB41E7C7F3800925B43 /* TheoryCommentsVC.swift */,
 				C469EF401E81669A00336C11 /* ProfileVC.swift */,
+				C4B03B071EA1450A000A1154 /* ProfilesVC.swift */,
 				C4239AD01E838881002B33C4 /* ViewProfileVC.swift */,
 			);
 			name = Controller;
@@ -519,6 +531,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4B03B081EA1450A000A1154 /* ProfilesVC.swift in Sources */,
 				C4DD3EB11E7B39FF00925B43 /* TheoryCommentCell.swift in Sources */,
 				C484995C1E942B4700668D1E /* Image.swift in Sources */,
 				C4B1613F1E77B75F00F7F06F /* EffectCell.swift in Sources */,
@@ -527,6 +540,7 @@
 				C4B161471E78B14E00F7F06F /* DetailVC.swift in Sources */,
 				C48A14A41E863DAF00B77199 /* Account.swift in Sources */,
 				C4DD3EA71E7B25D600925B43 /* TheoryComment.swift in Sources */,
+				C4B03B0C1EA15117000A1154 /* UIImageView+Kingfisher.swift in Sources */,
 				C4537EC41E5A1AE700D6BF94 /* AppDelegate.swift in Sources */,
 				C4239AC31E838564002B33C4 /* Extensions.swift in Sources */,
 				C4C711521E7F481E00C77BEA /* TimeSplitTextField.swift in Sources */,
@@ -536,6 +550,7 @@
 				C4D4AE281E77967900CBC597 /* EffectComment.swift in Sources */,
 				C4D4AE2A1E7798B400CBC597 /* DataService.swift in Sources */,
 				C4D4AE2C1E779A1400CBC597 /* Constants.swift in Sources */,
+				C4A3DD6C1EA5AD740008049C /* AppNavController.swift in Sources */,
 				C4239ACF1E8387EF002B33C4 /* HalfModalTransitioningDelegate.swift in Sources */,
 				C4B1615B1E78FDD000F7F06F /* CommentCell.swift in Sources */,
 				C4B161551E78E4DA00F7F06F /* AddCommentVC.swift in Sources */,
@@ -549,6 +564,7 @@
 				C4DD3EA51E7B239D00925B43 /* Theory.swift in Sources */,
 				C4DD3EA91E7B2DDB00925B43 /* AddTheoryCommentVC.swift in Sources */,
 				C4DD3EAF1E7B38F300925B43 /* TheoryCell.swift in Sources */,
+				C4B03B0A1EA14D7A000A1154 /* AccountCell.swift in Sources */,
 				C4B161451E78A74000F7F06F /* AddEffectVC.swift in Sources */,
 				C4239ACC1E8387EF002B33C4 /* HalfModalInteractiveTransition.swift in Sources */,
 				C4B161521E78E1BF00F7F06F /* CommentsVC.swift in Sources */,

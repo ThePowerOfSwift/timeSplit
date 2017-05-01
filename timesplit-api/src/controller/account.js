@@ -6,6 +6,7 @@ import Theory from './theory';
 import bodyParser from 'body-parser';
 import passport from 'passport';
 import config from '../config';
+import Image from './image';
 
 import {generateAccessToken, respond, authenticate} from '../middleware/authMiddleware';
 
@@ -31,11 +32,11 @@ export default ({ config, db }) => {
   api.post('/register', (req, res) => {
     Account.register(new Account({
       username: req.body.email,
-      name: req.body.name,
-      bio: req.body.bio,
-      website: req.body.website,
-      profileImageURL: req.body.profileImageURL
-    }), req.body.password, function(err, account) {
+      name: "",
+      bio: "",
+      website: "",
+      profileImageURL: "" }),
+     req.body.password, function(err, account) {
       if (err) {
         if (err.name === "UserExistsError") {
           console.log("User Exists");
@@ -44,12 +45,16 @@ export default ({ config, db }) => {
           return res.status(500).send(err);
         }
       }
-
       passport.authenticate(
         'local', {
           session: false
       })(req, res, () => {
-        res.status(200).send('Successfully created new account');
+        var response = {
+          message: "User Account Registered and Created",
+          id: req.params.id,
+          account
+        }
+        res.status(200).send(response);
       });
     });
   });
@@ -99,29 +104,13 @@ export default ({ config, db }) => {
     });
   });
 
-  // // '/v1/account/update/:id' - UPDATE profile
-  // api.put('/update/:id', authenticate, (req, res) => {
-  //   var userToUpdate = req.user.id;
-  //   // var query = { _id: userToUpdate };
-  //     Account.findByIdAndUpdate({ id: userToUpdate },
-  //       { $set: {
-  //         name: req.body.name,
-  //         bio: req.body.bio,
-  //         website: req.body.website,
-  //         profileImageURL: req.body.profileImageURL
-  //       }}, function (err, result) {
-  //       if (err) {
-  //         return res.send(err);
-  //       }
-  //         res.json(result);
-  //   });
-  //      res.send('Successfully updated account info');
-  //   });
-
     // '/v1/account/update/:id' - UPDATE profile
     api.put('/update/:id', authenticate, (req, res) => {
       var userToUpdate = req.params.id;
       // var query = { _id: userToUpdate };
+
+      var imageId = { profileImage: req.params.id };
+
         Account.findById(userToUpdate, function (err, account) {
           if (err) {
             res.status(500).send(err);
@@ -129,7 +118,7 @@ export default ({ config, db }) => {
               account.name = req.body.name || account.name;
               account.bio = req.body.bio || account.bio;
               account.website = req.body.website || account.website;
-              account.profileImage = req.body.profileImage || account.profileImage;
+              account.profileImage = imageId || account.profileImage;
               // Save the doc
               account.save(function (err, account) {
                 if (err) {
@@ -138,7 +127,8 @@ export default ({ config, db }) => {
                 var response = {
                   message: "Account Info updated",
                   id: userToUpdate,
-                  account
+                  account,
+
                 };
                 res.send(response);
               });

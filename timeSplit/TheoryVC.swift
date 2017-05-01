@@ -52,7 +52,7 @@ class TheoryVC: UIViewController {
     
     @IBAction func profileButtonTapped(sender: UIButton) {
         if authService.isAuthenticated == true {
-            performSegue(withIdentifier: "ShowProfileVC", sender: self)
+            performSegue(withIdentifier: "ShowProfilesVC", sender: self)
         } else {
             showLogInVC()
         }

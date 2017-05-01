@@ -17,10 +17,10 @@ class MainVC: UIViewController {
     
     var logInVC: LogInVC?
     
+    var defaults = UserDefaults.standard
+    
     var DEFAULTS_ID = UserDefaults.standard.object(forKey: "DEFAULTS_ID")
-    
-    var me: [Account] = []
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,11 +31,8 @@ class MainVC: UIViewController {
         tableView.dataSource = self
         DataService.instance.getAllEffects()
         
-//        authService.fetchMe()
-        print("This is defaults_id from fetchMe AuthService Function \(DEFAULTS_ID!)")
-        
-//        authService.fetchProfile(for: me)
-
+        checkCurrentLoggedUser()
+        authService.fetchMe()
 
         //Hide Autolayout Warning
         UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
@@ -46,6 +43,20 @@ class MainVC: UIViewController {
         logInVC = LogInVC()
         logInVC?.modalPresentationStyle = UIModalPresentationStyle.formSheet
         self.present(logInVC!, animated: true, completion: nil)
+        
+    }
+    
+    func checkCurrentLoggedUser() {
+        
+        if defaults.bool(forKey: DEFAULTS_AUTHENTICATED) == true {
+            print("This is defaults_id from fetchMe AuthService Function \(DEFAULTS_ID!)")
+        } else {
+            print("User is not authenticated and has no User ID")
+            showLogInVC()
+            OperationQueue.main.addOperation {
+                self.authService.fetchMe()
+            }
+        }
     }
     
     @IBAction func addButtonTapped(sender: UIButton) {
@@ -62,7 +73,7 @@ class MainVC: UIViewController {
     
     @IBAction func profileButtonTapped(sender: UIButton) {
         if AuthService.instance.isAuthenticated == true {
-            performSegue(withIdentifier: "ShowProfileVC", sender: self)
+            performSegue(withIdentifier: "ShowProfilesVC", sender: self)
         } else {
             showLogInVC()
         }
@@ -74,11 +85,6 @@ class MainVC: UIViewController {
                 let destinationVC = segue.destination as! DetailVC
                 destinationVC.selectedEffect = dataService.effects[indexPath.row]
             }
-        }
-        
-        if segue.identifier == "ShowProfileVC" {
-            let destinationVC = segue.destination as! ProfileVC
-//            destinationVC.myAccount = authService.myAccount
         }
     }
 }
@@ -107,12 +113,11 @@ extension MainVC: DataServiceDelegate {
 
 extension MainVC: AuthServiceDelegate {
     func loadMe() {
-        
-    }
+        authService.fetchMe()
 
+    }
     
-    func loadMe(for data: Account) {
-        
+    func getAll() {
     }
         
 }

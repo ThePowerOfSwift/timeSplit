@@ -9,7 +9,8 @@ import routes from './routes';
 const LocalStrategy = require('passport-local').Strategy;
 import fs from 'fs';
 import multer from 'multer';
-// import image from './controller/image';
+import image from './controller/image';
+import account from './controller/account';
 
 
 let app = express();
@@ -38,7 +39,7 @@ passport.deserializeUser(Account.deserializeUser());
 app.use('/v1', routes);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-app.get('/account/', function(req, res) {
+app.get('/v1/images', function(req, res) {
   res.render('index', { title: 'Express' });
 });
 
@@ -52,37 +53,120 @@ var storage = multer.diskStorage({
     var extension = originalname.split(".");
     var filename = Date.now() + '.' + extension[extension.length-1];
     callback(null, filename);
-  }
+  },
 });
 
-// NEW TEST
 var upload = multer({ storage : storage });
-var type = upload.single('upl');
+var type = upload.single('profile');
+var Image = require("./model/image")
 
-app.post('/', type, function(req, res) {
-      var image = new Image ({
-        fieldname: req.file.fieldname,
-        originalname: req.file.originalname,
-        destination: req.file.destination,
-        mimetype: req.file.mimetype,
-        filename: req.file.filename,
-        path: req.file.path,
-        size: req.file.size,
-      })
-      image.save(function(err) {
-        if (err) {
-          return res.end("Error uploading file.");
-        } else {
-          res.json({
-            message: 'File uploaded successfully',
-            filename: req.file.filename, // + fileExtension,
-            url: `${process.env.PWD}/images/${req.file.filename}` //+ fileExtension
-          });
-          console.log(req.body);
-          console.log(req.file);
+// NEW TEST
+app.post('/images', function(req, res) {
+  type(req, res, function(err) {
+    if (err) {
+      res.end("Error uploading file.");
+    }
+    // Push new ObjectId
+    var userId = req.user.id;
+    var userToUpdate = req.params.id;
+    var userAccount = { userId: account };
+    var image = new Image(req.file);
+    Account.findOne(userAccount, function (err, account) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        account.profileImage = image.ObjectId;
+        account.save(function (err, account) {
+          if (err) {
+            res.status(500).send(err)
           }
-      })
-  });
+        });
+      }
+    });
+
+    image.save(function (err, imageID_DB) {
+      if (err) {
+        res.send(err);
+      }
+
+    }),
+    res.json({
+        message: 'File uploaded successfully',
+        filename: req.file.filename, // + fileExtension,
+        url: `${process.env.PWD}/images/${req.file.filename}`,
+        id: image._id
+      });
+      console.log(req.body);
+      console.log(req.file);
+      console.log({ id: image._id });
+      res.end("File is uploaded");
+    });
+
+
+// app.post('/images', function(req, res) {
+//   type(req, res, function(err) {
+//     if (err) {
+//       res.end("Error uploading file.");
+//     }
+//     // Push new ObjectId
+//     var userId = req.user.id;
+//     var userToUpdate = req.params.id;
+//     var userAccount = { userId: account };
+//     var image = new Image(req.file);
+//     Account.findOne(userAccount, function (err, account) {
+//       if (err) {
+//         res.status(500).send(err);
+//       } else {
+//         account.profileImage = image.ObjectId;
+//         account.save(function (err, account) {
+//           if (err) {
+//             res.status(500).send(err)
+//           }
+//         });
+//       }
+//     });
+//
+//     image.save(function (err, imageID_DB) {
+//       if (err) {
+//         res.send(err);
+//       }
+//
+//     }),
+//     res.json({
+//         message: 'File uploaded successfully',
+//         filename: req.file.filename, // + fileExtension,
+//         url: `${process.env.PWD}/images/${req.file.filename}`,
+//         id: image._id
+//       });
+//       console.log(req.body);
+//       console.log(req.file);
+//       console.log({ id: image._id });
+//       res.end("File is uploaded");
+//     });
+
+    // app.put('/update/:id', (req, res) => {
+    //   var userToUpdate = req.params.id;
+    //   Account.findById(userToUpdate, function (err, account) {
+    //     if (err) {
+    //       res.status(500).send(err);
+    //     } else {
+    //       account.profileImage = req.image._id;
+    //       account.save(function (err, account) {
+    //         if (err) {
+    //           res.status(500).send(err)
+    //         }
+    //         var response = {
+    //           message: "Profile Image Updated",
+    //           id: userToUpdate,
+    //           account
+    //         };
+    //         res.send(response);
+    //       });
+    //     }
+    //   });
+    // });
+
+});
 
 app.server.listen(config.port);
 console.log(`Start on port ${app.server.address().port}`);
